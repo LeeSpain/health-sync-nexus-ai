@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { 
   Card, 
@@ -44,7 +45,6 @@ export const AgentList: React.FC<AgentListProps> = ({
       role: getPlatformRole(config.platform),
       status: config.isActive ? 'active' as AgentStatus : 'inactive' as AgentStatus,
       description: getPlatformDescription(config.platform),
-      tone: config.personality.tone,
       conversationsToday: Math.floor(Math.random() * 100), // Mock data
       topTopic: getTopTopic(config.type),
       sentiment: Math.floor(70 + Math.random() * 30), // Mock data
@@ -166,7 +166,7 @@ export const AgentList: React.FC<AgentListProps> = ({
                 </div>
                 <div>
                   <p className="text-muted-foreground">Tone</p>
-                  <p className="font-medium line-clamp-1">{agent.tone}</p>
+                  <p className="font-medium line-clamp-1">{agent.personality.tone}</p>
                 </div>
               </div>
             </CardContent>
