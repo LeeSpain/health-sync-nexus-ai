@@ -24,7 +24,19 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           </div>
         </div>
       </div>
-      <Toaster position="top-right" />
+      <Toaster 
+        position="top-right" 
+        closeButton 
+        richColors 
+        toastOptions={{
+          duration: 5000,
+          className: "rounded-md border bg-background text-foreground shadow-md",
+          // Add animation and styling options
+          style: {
+            fontSize: "0.875rem",
+          },
+        }}
+      />
     </SidebarProvider>
   );
 }
