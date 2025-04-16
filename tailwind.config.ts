@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,28 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// GHS Agent-specific colors
+				isabella: {
+					DEFAULT: '#F5F5F0', // Ivory
+					accent: '#D4AF37', // Gold
+					light: '#FFFFF5',
+					dark: '#E6E6DC'
+				},
+				anna: {
+					DEFAULT: '#A390E4', // Lilac
+					light: '#D6BCFA',
+					dark: '#7E69AB'
+				},
+				emma: {
+					DEFAULT: '#10B981', // Emerald Green
+					light: '#6EE7B7',
+					dark: '#0E9F6E'
+				},
+				julia: {
+					DEFAULT: '#60A5FA', // Sky Blue
+					light: '#93C5FD',
+					dark: '#3B82F6'
 				}
 			},
 			borderRadius: {
@@ -84,11 +107,34 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'fade-in': {
+					"0%": {
+						opacity: "0",
+						transform: "translateY(10px)"
+					},
+					"100%": {
+						opacity: "1",
+						transform: "translateY(0)"
+					}
+				},
+				'scale-in': {
+					"0%": {
+						transform: "scale(0.95)",
+						opacity: "0"
+					},
+					"100%": {
+						transform: "scale(1)",
+						opacity: "1"
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.3s ease-out',
+				'scale-in': 'scale-in 0.2s ease-out',
+				'enter': 'fade-in 0.3s ease-out, scale-in 0.2s ease-out'
 			}
 		}
 	},
