@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { DashboardLayout } from '@/components/layout/DashboardLayout';
 import { 
@@ -219,6 +220,7 @@ const SettingsPage = () => {
           </div>
           
           <div className="md:w-3/4">
+            {/* General Settings Tab */}
             {activeTab === "general" && (
               <Card>
                 <CardHeader>
@@ -363,6 +365,7 @@ const SettingsPage = () => {
               </Card>
             )}
             
+            {/* API Connections Tab */}
             {activeTab === "api" && (
               <Card>
                 <CardHeader>
@@ -516,6 +519,7 @@ const SettingsPage = () => {
               </Card>
             )}
             
+            {/* Voice Settings Tab */}
             {activeTab === "voice" && (
               <Card>
                 <CardHeader>
@@ -690,6 +694,7 @@ const SettingsPage = () => {
               </Card>
             )}
             
+            {/* Language Tab */}
             {activeTab === "language" && (
               <Card>
                 <CardHeader>
@@ -859,6 +864,7 @@ const SettingsPage = () => {
               </Card>
             )}
             
+            {/* Security Tab */}
             {activeTab === "security" && (
               <Card>
                 <CardHeader>
@@ -904,4 +910,719 @@ const SettingsPage = () => {
                           <SelectContent>
                             <SelectItem value="30">30 days</SelectItem>
                             <SelectItem value="60">60 days</SelectItem>
-                            <SelectItem
+                            <SelectItem value="90">90 days</SelectItem>
+                            <SelectItem value="180">180 days</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <Separator />
+                  
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-medium">Access Control</h3>
+                    
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <Label htmlFor="ip-restriction">IP Restrictions</Label>
+                        <p className="text-xs text-muted-foreground">Limit access to specific IP addresses</p>
+                      </div>
+                      <Switch id="ip-restriction" />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="allowed-ips">Allowed IP Addresses</Label>
+                      <Input id="allowed-ips" placeholder="e.g. 192.168.1.1, 10.0.0.0/24" />
+                      <p className="text-xs text-muted-foreground">Comma-separated list of IPs or CIDR ranges</p>
+                    </div>
+                    
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <Label htmlFor="session-concurrent">Concurrent Sessions</Label>
+                        <p className="text-xs text-muted-foreground">Allow multiple active sessions per user</p>
+                      </div>
+                      <Switch id="session-concurrent" defaultChecked />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="max-sessions">Maximum Concurrent Sessions</Label>
+                      <div>
+                        <Select defaultValue="3">
+                          <SelectTrigger id="max-sessions">
+                            <SelectValue placeholder="Select limit" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="1">1 session</SelectItem>
+                            <SelectItem value="2">2 sessions</SelectItem>
+                            <SelectItem value="3">3 sessions</SelectItem>
+                            <SelectItem value="5">5 sessions</SelectItem>
+                            <SelectItem value="10">10 sessions</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <Separator />
+                  
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-medium">Data Security</h3>
+                    
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <Label htmlFor="data-encryption">Encryption at Rest</Label>
+                        <p className="text-xs text-muted-foreground">Encrypt stored data and files</p>
+                      </div>
+                      <Switch id="data-encryption" defaultChecked />
+                    </div>
+                    
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <Label htmlFor="tls-required">TLS Required</Label>
+                        <p className="text-xs text-muted-foreground">Require secure connections for all API endpoints</p>
+                      </div>
+                      <Switch id="tls-required" defaultChecked />
+                    </div>
+                    
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <Label htmlFor="sensitive-redaction">Sensitive Data Redaction</Label>
+                        <p className="text-xs text-muted-foreground">Redact PII and sensitive information from logs</p>
+                      </div>
+                      <Switch id="sensitive-redaction" defaultChecked />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="data-retention">Data Retention Period</Label>
+                      <div>
+                        <Select defaultValue="180">
+                          <SelectTrigger id="data-retention">
+                            <SelectValue placeholder="Select period" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="30">30 days</SelectItem>
+                            <SelectItem value="90">90 days</SelectItem>
+                            <SelectItem value="180">180 days</SelectItem>
+                            <SelectItem value="365">1 year</SelectItem>
+                            <SelectItem value="730">2 years</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <p className="text-xs text-muted-foreground">How long to keep conversation data before deletion</p>
+                    </div>
+                  </div>
+                </CardContent>
+                <CardFooter className="border-t px-6 py-4 flex justify-between">
+                  <Button variant="ghost">Reset to Defaults</Button>
+                  <Button onClick={handleSaveChanges}>Save Changes</Button>
+                </CardFooter>
+              </Card>
+            )}
+            
+            {/* User Access Tab */}
+            {activeTab === "users" && (
+              <Card>
+                <CardHeader>
+                  <CardTitle>User Access Management</CardTitle>
+                  <CardDescription>Configure user roles, permissions, and access controls</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-lg font-medium">System Users</h3>
+                    <Button>
+                      <UserPlus className="mr-2 h-4 w-4" />
+                      Add User
+                    </Button>
+                  </div>
+                  
+                  <div className="border rounded-md">
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead>Name</TableHead>
+                          <TableHead>Email</TableHead>
+                          <TableHead>Role</TableHead>
+                          <TableHead>Status</TableHead>
+                          <TableHead className="text-right">Actions</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        <TableRow>
+                          <TableCell className="font-medium">John Doe</TableCell>
+                          <TableCell>john.doe@example.com</TableCell>
+                          <TableCell>Administrator</TableCell>
+                          <TableCell>
+                            <Badge className="bg-emerald-500">Active</Badge>
+                          </TableCell>
+                          <TableCell className="text-right">
+                            <div className="flex justify-end gap-2">
+                              <Button variant="ghost" size="icon">
+                                <UserCog className="h-4 w-4" />
+                              </Button>
+                              <Button variant="ghost" size="icon">
+                                <UserX className="h-4 w-4 text-destructive" />
+                              </Button>
+                            </div>
+                          </TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell className="font-medium">Jane Smith</TableCell>
+                          <TableCell>jane.smith@example.com</TableCell>
+                          <TableCell>Manager</TableCell>
+                          <TableCell>
+                            <Badge className="bg-emerald-500">Active</Badge>
+                          </TableCell>
+                          <TableCell className="text-right">
+                            <div className="flex justify-end gap-2">
+                              <Button variant="ghost" size="icon">
+                                <UserCog className="h-4 w-4" />
+                              </Button>
+                              <Button variant="ghost" size="icon">
+                                <UserX className="h-4 w-4 text-destructive" />
+                              </Button>
+                            </div>
+                          </TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell className="font-medium">Robert Johnson</TableCell>
+                          <TableCell>robert.johnson@example.com</TableCell>
+                          <TableCell>Viewer</TableCell>
+                          <TableCell>
+                            <Badge variant="outline">Inactive</Badge>
+                          </TableCell>
+                          <TableCell className="text-right">
+                            <div className="flex justify-end gap-2">
+                              <Button variant="ghost" size="icon">
+                                <UserCog className="h-4 w-4" />
+                              </Button>
+                              <Button variant="ghost" size="icon">
+                                <UserX className="h-4 w-4 text-destructive" />
+                              </Button>
+                            </div>
+                          </TableCell>
+                        </TableRow>
+                      </TableBody>
+                    </Table>
+                  </div>
+                  
+                  <Separator />
+                  
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-medium">Role Management</h3>
+                    
+                    <div className="border rounded-md">
+                      <Table>
+                        <TableHeader>
+                          <TableRow>
+                            <TableHead>Role Name</TableHead>
+                            <TableHead>Description</TableHead>
+                            <TableHead>Users</TableHead>
+                            <TableHead className="text-right">Actions</TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          <TableRow>
+                            <TableCell className="font-medium">Administrator</TableCell>
+                            <TableCell>Full system access including user management</TableCell>
+                            <TableCell>1</TableCell>
+                            <TableCell className="text-right">
+                              <Button variant="ghost" size="sm">Edit Permissions</Button>
+                            </TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell className="font-medium">Manager</TableCell>
+                            <TableCell>Can manage agents and view analytics</TableCell>
+                            <TableCell>1</TableCell>
+                            <TableCell className="text-right">
+                              <Button variant="ghost" size="sm">Edit Permissions</Button>
+                            </TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell className="font-medium">Viewer</TableCell>
+                            <TableCell>Read-only access to dashboard and analytics</TableCell>
+                            <TableCell>1</TableCell>
+                            <TableCell className="text-right">
+                              <Button variant="ghost" size="sm">Edit Permissions</Button>
+                            </TableCell>
+                          </TableRow>
+                        </TableBody>
+                      </Table>
+                    </div>
+                    
+                    <div className="flex justify-end">
+                      <Button variant="outline">
+                        <PlusCircle className="mr-2 h-4 w-4" />
+                        Create New Role
+                      </Button>
+                    </div>
+                  </div>
+                  
+                  <Separator />
+                  
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-medium">Access Control Settings</h3>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="invite-only">User Registration</Label>
+                      <div className="flex items-center gap-2">
+                        <Select defaultValue="invite">
+                          <SelectTrigger id="invite-only">
+                            <SelectValue placeholder="Select registration method" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="invite">Invite Only</SelectItem>
+                            <SelectItem value="approval">Registration with Approval</SelectItem>
+                            <SelectItem value="open">Open Registration</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <p className="text-xs text-muted-foreground">Control how new users can join the system</p>
+                    </div>
+                    
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <Label htmlFor="audit-logging">Audit Logging</Label>
+                        <p className="text-xs text-muted-foreground">Log all user actions for compliance and security</p>
+                      </div>
+                      <Switch id="audit-logging" defaultChecked />
+                    </div>
+                    
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <Label htmlFor="failed-attempts">Account Lockout</Label>
+                        <p className="text-xs text-muted-foreground">Lock accounts after failed login attempts</p>
+                      </div>
+                      <Switch id="failed-attempts" defaultChecked />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="lockout-threshold">Lockout Threshold</Label>
+                      <div>
+                        <Select defaultValue="5">
+                          <SelectTrigger id="lockout-threshold">
+                            <SelectValue placeholder="Select threshold" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="3">3 attempts</SelectItem>
+                            <SelectItem value="5">5 attempts</SelectItem>
+                            <SelectItem value="10">10 attempts</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <p className="text-xs text-muted-foreground">Number of failed attempts before account lockout</p>
+                    </div>
+                  </div>
+                </CardContent>
+                <CardFooter className="border-t px-6 py-4 flex justify-between">
+                  <Button variant="ghost">Reset to Defaults</Button>
+                  <Button onClick={handleSaveChanges}>Save Changes</Button>
+                </CardFooter>
+              </Card>
+            )}
+            
+            {/* Notifications Tab */}
+            {activeTab === "notifications" && (
+              <Card>
+                <CardHeader>
+                  <CardTitle>Notification Settings</CardTitle>
+                  <CardDescription>Configure system and user notification preferences</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-medium">System Notifications</h3>
+                    
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <Label htmlFor="system-alerts">System Alerts</Label>
+                          <p className="text-xs text-muted-foreground">Critical system errors and warnings</p>
+                        </div>
+                        <Switch id="system-alerts" defaultChecked />
+                      </div>
+                      
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <Label htmlFor="maintenance-notices">Maintenance Notices</Label>
+                          <p className="text-xs text-muted-foreground">Scheduled maintenance and downtime alerts</p>
+                        </div>
+                        <Switch id="maintenance-notices" defaultChecked />
+                      </div>
+                      
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <Label htmlFor="performance-alerts">Performance Alerts</Label>
+                          <p className="text-xs text-muted-foreground">Resource usage and performance warnings</p>
+                        </div>
+                        <Switch id="performance-alerts" defaultChecked />
+                      </div>
+                      
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <Label htmlFor="security-alerts">Security Alerts</Label>
+                          <p className="text-xs text-muted-foreground">Security-related events and potential threats</p>
+                        </div>
+                        <Switch id="security-alerts" defaultChecked />
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <Separator />
+                  
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-medium">Agent Notifications</h3>
+                    
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <Label htmlFor="agent-escalations">Agent Escalations</Label>
+                          <p className="text-xs text-muted-foreground">Notify when agents escalate conversations</p>
+                        </div>
+                        <Switch id="agent-escalations" defaultChecked />
+                      </div>
+                      
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <Label htmlFor="agent-training">Training Updates</Label>
+                          <p className="text-xs text-muted-foreground">Notifications about agent training progress</p>
+                        </div>
+                        <Switch id="agent-training" defaultChecked />
+                      </div>
+                      
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <Label htmlFor="agent-errors">Error Reports</Label>
+                          <p className="text-xs text-muted-foreground">Agent error reports and issues</p>
+                        </div>
+                        <Switch id="agent-errors" defaultChecked />
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <Separator />
+                  
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-medium">Notification Channels</h3>
+                    
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <BellRing className="h-4 w-4" />
+                          <div>
+                            <Label htmlFor="in-app">In-App Notifications</Label>
+                            <p className="text-xs text-muted-foreground">Display notifications in the dashboard</p>
+                          </div>
+                        </div>
+                        <Switch id="in-app" defaultChecked />
+                      </div>
+                      
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <Mail className="h-4 w-4" />
+                          <div>
+                            <Label htmlFor="email">Email Notifications</Label>
+                            <p className="text-xs text-muted-foreground">Send notifications to registered email addresses</p>
+                          </div>
+                        </div>
+                        <Switch id="email" defaultChecked />
+                      </div>
+                      
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <MessagesSquare className="h-4 w-4" />
+                          <div>
+                            <Label htmlFor="sms">SMS Notifications</Label>
+                            <p className="text-xs text-muted-foreground">Send text message alerts for critical events</p>
+                          </div>
+                        </div>
+                        <Switch id="sms" />
+                      </div>
+                      
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <Webhook className="h-4 w-4" />
+                          <div>
+                            <Label htmlFor="webhook-notifications">Webhook Notifications</Label>
+                            <p className="text-xs text-muted-foreground">Send notifications to configured webhook endpoints</p>
+                          </div>
+                        </div>
+                        <Switch id="webhook-notifications" defaultChecked />
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="email-recipients">Email Recipients</Label>
+                      <Input id="email-recipients" defaultValue="admin@example.com, alerts@example.com" />
+                      <p className="text-xs text-muted-foreground">Comma-separated list of email recipients</p>
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="notification-frequency">Notification Frequency</Label>
+                      <div>
+                        <Select defaultValue="immediate">
+                          <SelectTrigger id="notification-frequency">
+                            <SelectValue placeholder="Select frequency" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="immediate">Immediate</SelectItem>
+                            <SelectItem value="hourly">Hourly Digest</SelectItem>
+                            <SelectItem value="daily">Daily Digest</SelectItem>
+                            <SelectItem value="weekly">Weekly Digest</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+                <CardFooter className="border-t px-6 py-4 flex justify-between">
+                  <Button variant="ghost">Reset to Defaults</Button>
+                  <Button onClick={handleSaveChanges}>Save Changes</Button>
+                </CardFooter>
+              </Card>
+            )}
+            
+            {/* Advanced Tab */}
+            {activeTab === "advanced" && (
+              <Card>
+                <CardHeader>
+                  <CardTitle>Advanced Settings</CardTitle>
+                  <CardDescription>Configure system-level and advanced features</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-medium">System Configuration</h3>
+                    
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <Label htmlFor="debug-mode">Debug Mode</Label>
+                        <p className="text-xs text-muted-foreground">Enable detailed logging for troubleshooting</p>
+                      </div>
+                      <Switch id="debug-mode" />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="log-level">Logging Level</Label>
+                      <div>
+                        <Select defaultValue="info">
+                          <SelectTrigger id="log-level">
+                            <SelectValue placeholder="Select level" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="error">Error</SelectItem>
+                            <SelectItem value="warn">Warning</SelectItem>
+                            <SelectItem value="info">Info</SelectItem>
+                            <SelectItem value="debug">Debug</SelectItem>
+                            <SelectItem value="trace">Trace</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <Label htmlFor="performance-mode">Performance Mode</Label>
+                        <p className="text-xs text-muted-foreground">Optimize for performance over features</p>
+                      </div>
+                      <Switch id="performance-mode" />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="cache-strategy">Caching Strategy</Label>
+                      <div>
+                        <Select defaultValue="balanced">
+                          <SelectTrigger id="cache-strategy">
+                            <SelectValue placeholder="Select strategy" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="aggressive">Aggressive Caching</SelectItem>
+                            <SelectItem value="balanced">Balanced</SelectItem>
+                            <SelectItem value="minimal">Minimal Caching</SelectItem>
+                            <SelectItem value="disabled">Disabled</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <Separator />
+                  
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-medium">Data Management</h3>
+                    
+                    <div className="border rounded-md p-4 space-y-4">
+                      <h4 className="font-medium">Database Maintenance</h4>
+                      
+                      <div className="space-y-2">
+                        <Label htmlFor="maintenance-window">Maintenance Window</Label>
+                        <div>
+                          <Select defaultValue="weekend">
+                            <SelectTrigger id="maintenance-window">
+                              <SelectValue placeholder="Select window" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="daily">Daily (2AM-4AM)</SelectItem>
+                              <SelectItem value="weekend">Weekend (Saturday 1AM-5AM)</SelectItem>
+                              <SelectItem value="monthly">Monthly (First Sunday, 1AM-6AM)</SelectItem>
+                              <SelectItem value="manual">Manual Only</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+                      </div>
+                      
+                      <div className="flex justify-end space-x-2">
+                        <Button variant="outline">
+                          <Database className="mr-2 h-4 w-4" />
+                          Run Vacuum
+                        </Button>
+                        <Button variant="outline">
+                          <RefreshCw className="mr-2 h-4 w-4" />
+                          Rebuild Indexes
+                        </Button>
+                      </div>
+                    </div>
+                    
+                    <div className="border rounded-md p-4 space-y-4">
+                      <h4 className="font-medium">Backup & Restore</h4>
+                      
+                      <div className="space-y-2">
+                        <Label>Backup Storage</Label>
+                        <div className="flex items-center space-x-2">
+                          <Checkbox id="backup-local" defaultChecked />
+                          <Label htmlFor="backup-local">Local Storage</Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <Checkbox id="backup-s3" defaultChecked />
+                          <Label htmlFor="backup-s3">S3 Compatible Storage</Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <Checkbox id="backup-azure" />
+                          <Label htmlFor="backup-azure">Azure Blob Storage</Label>
+                        </div>
+                      </div>
+                      
+                      <div className="flex justify-end space-x-2">
+                        <Button variant="outline">
+                          <Download className="mr-2 h-4 w-4" />
+                          Backup Now
+                        </Button>
+                        <Button variant="outline">
+                          <Upload className="mr-2 h-4 w-4" />
+                          Restore
+                        </Button>
+                      </div>
+                    </div>
+                    
+                    <div className="border rounded-md p-4 space-y-4">
+                      <h4 className="font-medium">Data Cleanup</h4>
+                      
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <Label htmlFor="auto-cleanup">Automatic Data Cleanup</Label>
+                          <p className="text-xs text-muted-foreground">Periodically remove old data</p>
+                        </div>
+                        <Switch id="auto-cleanup" defaultChecked />
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <Label htmlFor="cleanup-age">Cleanup Age Threshold</Label>
+                        <div>
+                          <Select defaultValue="180">
+                            <SelectTrigger id="cleanup-age">
+                              <SelectValue placeholder="Select threshold" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="30">30 days</SelectItem>
+                              <SelectItem value="90">90 days</SelectItem>
+                              <SelectItem value="180">180 days</SelectItem>
+                              <SelectItem value="365">1 year</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+                      </div>
+                      
+                      <div className="flex justify-end">
+                        <Dialog>
+                          <DialogTrigger asChild>
+                            <Button variant="destructive">
+                              <Trash2 className="mr-2 h-4 w-4" />
+                              Purge Old Data
+                            </Button>
+                          </DialogTrigger>
+                          <DialogContent>
+                            <DialogHeader>
+                              <DialogTitle>Confirm Data Purge</DialogTitle>
+                              <DialogDescription>
+                                This action will permanently delete data older than the selected threshold. 
+                                This cannot be undone.
+                              </DialogDescription>
+                            </DialogHeader>
+                            <div className="space-y-4 py-4">
+                              <div className="space-y-2">
+                                <Label htmlFor="purge-confirm">Type "CONFIRM" to proceed</Label>
+                                <Input id="purge-confirm" placeholder="CONFIRM" />
+                              </div>
+                            </div>
+                            <DialogFooter>
+                              <Button variant="outline">Cancel</Button>
+                              <Button variant="destructive">Purge Data</Button>
+                            </DialogFooter>
+                          </DialogContent>
+                        </Dialog>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <Separator />
+                  
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-medium">System Health</h3>
+                    
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <Label htmlFor="health-checks">Automated Health Checks</Label>
+                          <p className="text-xs text-muted-foreground">Periodically check system components</p>
+                        </div>
+                        <Switch id="health-checks" defaultChecked />
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <Label htmlFor="health-frequency">Health Check Frequency</Label>
+                        <div>
+                          <Select defaultValue="15">
+                            <SelectTrigger id="health-frequency">
+                              <SelectValue placeholder="Select frequency" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="5">Every 5 minutes</SelectItem>
+                              <SelectItem value="15">Every 15 minutes</SelectItem>
+                              <SelectItem value="30">Every 30 minutes</SelectItem>
+                              <SelectItem value="60">Every hour</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+                      </div>
+                      
+                      <div className="flex justify-end">
+                        <Button variant="outline">
+                          <Activity className="mr-2 h-4 w-4" />
+                          Run Health Check Now
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+                <CardFooter className="border-t px-6 py-4 flex justify-between">
+                  <Button variant="ghost">Reset to Defaults</Button>
+                  <Button onClick={handleSaveChanges}>Save Changes</Button>
+                </CardFooter>
+              </Card>
+            )}
+          </div>
+        </div>
+      </div>
+    </DashboardLayout>
+  );
+};
+
+export default SettingsPage;
