@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { DashboardLayout } from '@/components/layout/DashboardLayout';
 import { 
   Breadcrumb,
@@ -9,8 +9,17 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator
 } from "@/components/ui/breadcrumb";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { AgentList } from '@/components/agents/AgentList';
+import { AgentDetail } from '@/components/agents/AgentDetail';
+import { AgentFilters } from '@/components/agents/AgentFilters';
+import { Button } from '@/components/ui/button';
+import { Plus, Settings } from 'lucide-react';
+import { Separator } from '@/components/ui/separator';
 
 const AgentsPage = () => {
+  const [selectedAgentId, setSelectedAgentId] = useState<string | null>(null);
+
   return (
     <DashboardLayout>
       <div className="space-y-6">
@@ -28,22 +37,72 @@ const AgentsPage = () => {
         
         <div className="flex items-center justify-between">
           <h1 className="text-3xl font-bold">Agent Management</h1>
+          <div className="flex gap-2">
+            <Button variant="outline" size="sm">
+              <Settings className="h-4 w-4 mr-2" />
+              Advanced Settings
+            </Button>
+            <Button size="sm">
+              <Plus className="h-4 w-4 mr-2" />
+              New Agent
+            </Button>
+          </div>
         </div>
         
         <p className="text-muted-foreground">
           Configure, train, and monitor all GHS agents in your network. Adjust agent settings and behaviors.
         </p>
-        
-        <div className="bg-card border rounded-lg p-8 flex flex-col items-center justify-center min-h-[300px]">
-          <div className="w-16 h-16 rounded-full bg-secondary/30 flex items-center justify-center mb-4">
-            <span className="text-2xl">🤖</span>
+
+        <Tabs defaultValue="all" className="w-full">
+          <div className="flex justify-between items-center mb-4">
+            <TabsList>
+              <TabsTrigger value="all">All Agents</TabsTrigger>
+              <TabsTrigger value="active">Active</TabsTrigger>
+              <TabsTrigger value="inactive">Inactive</TabsTrigger>
+              <TabsTrigger value="training">In Training</TabsTrigger>
+            </TabsList>
+            
+            <AgentFilters />
           </div>
-          <h3 className="text-xl font-medium mb-2">Agent Configuration</h3>
-          <p className="text-muted-foreground text-center max-w-md mb-6">
-            This page will display detailed agent configuration options for Anna, Emma, and Julia,
-            including personality settings, voice configuration, and knowledge base management.
-          </p>
-        </div>
+          
+          <Separator className="my-4" />
+          
+          <TabsContent value="all" className="mt-0">
+            <div className="grid lg:grid-cols-[1fr_300px] gap-6">
+              <AgentList onSelectAgent={setSelectedAgentId} selectedAgentId={selectedAgentId} />
+              {selectedAgentId && (
+                <AgentDetail agentId={selectedAgentId} />
+              )}
+            </div>
+          </TabsContent>
+          
+          <TabsContent value="active" className="mt-0">
+            <div className="grid lg:grid-cols-[1fr_300px] gap-6">
+              <AgentList onSelectAgent={setSelectedAgentId} selectedAgentId={selectedAgentId} status="active" />
+              {selectedAgentId && (
+                <AgentDetail agentId={selectedAgentId} />
+              )}
+            </div>
+          </TabsContent>
+          
+          <TabsContent value="inactive" className="mt-0">
+            <div className="grid lg:grid-cols-[1fr_300px] gap-6">
+              <AgentList onSelectAgent={setSelectedAgentId} selectedAgentId={selectedAgentId} status="inactive" />
+              {selectedAgentId && (
+                <AgentDetail agentId={selectedAgentId} />
+              )}
+            </div>
+          </TabsContent>
+          
+          <TabsContent value="training" className="mt-0">
+            <div className="grid lg:grid-cols-[1fr_300px] gap-6">
+              <AgentList onSelectAgent={setSelectedAgentId} selectedAgentId={selectedAgentId} status="training" />
+              {selectedAgentId && (
+                <AgentDetail agentId={selectedAgentId} />
+              )}
+            </div>
+          </TabsContent>
+        </Tabs>
       </div>
     </DashboardLayout>
   );
