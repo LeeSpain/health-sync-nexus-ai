@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { DashboardLayout } from '@/components/layout/DashboardLayout';
 import { 
@@ -200,7 +199,7 @@ const EscalationsPage = () => {
                       <TableCell className="font-medium">Negative Sentiment</TableCell>
                       <TableCell>Anna</TableCell>
                       <TableCell>Emma</TableCell>
-                      <TableCell>Sentiment score < -0.5 for 3 messages</TableCell>
+                      <TableCell>Sentiment score &lt; -0.5 for 3 messages</TableCell>
                       <TableCell><Badge variant="default">Active</Badge></TableCell>
                     </TableRow>
                     <TableRow>
