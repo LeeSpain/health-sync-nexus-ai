@@ -29,7 +29,7 @@ export function VideoFrame({ videoUrl }: VideoFrameProps) {
       }`}
     >
       <div className="bg-gradient-to-r from-primary to-primary/80 text-white p-2 flex items-center justify-between">
-        <h4 className={`text-sm font-medium ${isMinimized ? 'hidden' : 'block'}`}>Demo Video</h4>
+        <h4 className={`text-sm font-medium ${isMinimized ? 'hidden' : 'block'}`}>AI Agent Command</h4>
         <div className="flex gap-1">
           <Button 
             variant="ghost" 
