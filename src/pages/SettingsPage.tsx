@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { DashboardLayout } from '@/components/layout/DashboardLayout';
 import { 
@@ -906,4 +907,29 @@ const SettingsPage = () => {
                         <Select defaultValue="90">
                           <SelectTrigger id="password-expiry-days">
                             <SelectValue placeholder="Select period" />
-                          </Select
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="30">30 Days</SelectItem>
+                            <SelectItem value="60">60 Days</SelectItem>
+                            <SelectItem value="90">90 Days</SelectItem>
+                            <SelectItem value="180">180 Days</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+                <CardFooter className="border-t px-6 py-4 flex justify-between">
+                  <Button variant="ghost">Reset to Defaults</Button>
+                  <Button>Save Changes</Button>
+                </CardFooter>
+              </Card>
+            )}
+          </div>
+        </div>
+      </div>
+    </DashboardLayout>
+  );
+};
+
+export default SettingsPage;
