@@ -7,6 +7,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import CommandPage from "./pages/CommandPage";
+import ConversationsPage from "./pages/ConversationsPage";
+import AgentsPage from "./pages/AgentsPage";
+import AnalyticsPage from "./pages/AnalyticsPage";
+import EscalationsPage from "./pages/EscalationsPage";
+import TrainingPage from "./pages/TrainingPage";
+import SettingsPage from "./pages/SettingsPage";
 
 const queryClient = new QueryClient();
 
@@ -19,13 +25,12 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/command" element={<CommandPage />} />
-          {/* Placeholder routes for future implementation */}
-          <Route path="/conversations" element={<Index />} />
-          <Route path="/agents" element={<Index />} />
-          <Route path="/analytics" element={<Index />} />
-          <Route path="/escalations" element={<Index />} />
-          <Route path="/training" element={<Index />} />
-          <Route path="/settings" element={<Index />} />
+          <Route path="/conversations" element={<ConversationsPage />} />
+          <Route path="/agents" element={<AgentsPage />} />
+          <Route path="/analytics" element={<AnalyticsPage />} />
+          <Route path="/escalations" element={<EscalationsPage />} />
+          <Route path="/training" element={<TrainingPage />} />
+          <Route path="/settings" element={<SettingsPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

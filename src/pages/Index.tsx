@@ -4,6 +4,12 @@ import { DashboardLayout } from '@/components/layout/DashboardLayout';
 import { AgentCard } from '@/components/dashboard/AgentCard';
 import { CommandConsole } from '@/components/dashboard/CommandConsole';
 import { SystemStats } from '@/components/dashboard/SystemStats';
+import { 
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbList,
+  BreadcrumbPage
+} from "@/components/ui/breadcrumb";
 
 const Index = () => {
   // Mock data for agent cards
@@ -40,6 +46,14 @@ const Index = () => {
   return (
     <DashboardLayout>
       <div className="space-y-6">
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbPage>Dashboard</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+
         <div className="flex items-center justify-between">
           <h1 className="text-3xl font-bold">GHS Command Dashboard</h1>
           <p className="text-sm text-muted-foreground">
