@@ -10,7 +10,8 @@ import {
   Settings, 
   BookOpen,
   HelpCircle,
-  Mic 
+  Mic,
+  Globe
 } from 'lucide-react';
 import { 
   Sidebar, 
@@ -76,6 +77,14 @@ export function DashboardSidebar() {
                   <Link to="/agents" className="flex items-center">
                     <Users className="mr-2 h-4 w-4" />
                     <span>Agent Management</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <Link to="/platforms" className="flex items-center">
+                    <Globe className="mr-2 h-4 w-4" />
+                    <span>Connected Platforms</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>

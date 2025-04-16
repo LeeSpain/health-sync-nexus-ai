@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
   Card, 
   CardContent, 
@@ -10,25 +10,15 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Edit, Trash2, Play, Pause, BarChart2, MessageSquare } from 'lucide-react';
+import { Edit, Trash2, Play, Pause, BarChart2, MessageSquare, Zap } from 'lucide-react';
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { AgentAvatar } from './AgentAvatar';
+import { useAgentService } from '@/hooks/use-agent-service';
+import { AgentConfiguration, AgentType, PlatformType } from '@/lib/agent-integration/types';
+import { toast } from 'sonner';
 
 export type AgentStatus = 'active' | 'inactive' | 'training';
-
-type Agent = {
-  id: string;
-  name: string;
-  role: string;
-  status: AgentStatus;
-  description: string;
-  tone: string;
-  conversationsToday: number;
-  topTopic: string;
-  sentiment: number;
-  color: string;
-};
 
 type AgentListProps = {
   onSelectAgent: (id: string) => void;
@@ -36,69 +26,108 @@ type AgentListProps = {
   status?: AgentStatus;
 };
 
-// Sample agent data
-const agents: Agent[] = [
-  {
-    id: '1',
-    name: 'Anna',
-    role: 'Frontline AI for wellness users',
-    status: 'active',
-    description: 'Handles daily wellness check-ins, device setup help, and booking calls.',
-    tone: 'Gentle, warm, emotionally supportive',
-    conversationsToday: 87,
-    topTopic: 'Medication reminders',
-    sentiment: 92,
-    color: '#A390E4', // Lilac
-  },
-  {
-    id: '2',
-    name: 'Emma',
-    role: 'AI companion for nurses',
-    status: 'active',
-    description: 'Handles clock-in workflows, care plans, training prompts, and support questions.',
-    tone: 'Reassuring, focused, professional',
-    conversationsToday: 56,
-    topTopic: 'Patient care plans',
-    sentiment: 85,
-    color: '#10B981', // Emerald Green
-  },
-  {
-    id: '3',
-    name: 'Julia',
-    role: 'Assistant to doctors and medical staff',
-    status: 'active',
-    description: 'Summarizes patient notes, assists with documentation, and provides care suggestions.',
-    tone: 'Clear, efficient, no-nonsense',
-    conversationsToday: 42,
-    topTopic: 'Documentation assistance',
-    sentiment: 78,
-    color: '#60A5FA', // Sky Blue
-  },
-  {
-    id: '4',
-    name: 'Isabella',
-    role: 'Core intelligence, admin-only control panel AI',
-    status: 'active',
-    description: 'Oversees and trains the other agents, providing strategic insights to the admin.',
-    tone: 'Calm, wise, strategic',
-    conversationsToday: 12,
-    topTopic: 'Agent performance analysis',
-    sentiment: 95,
-    color: '#FEF3C7', // Ivory
-  }
-];
-
 export const AgentList: React.FC<AgentListProps> = ({ 
   onSelectAgent, 
   selectedAgentId,
   status
 }) => {
+  const [agents, setAgents] = useState<AgentConfiguration[]>([]);
+  const { loading, error, getAllAgentConfigs, updateAgentConfig } = useAgentService();
+  
+  useEffect(() => {
+    loadAgents();
+  }, []);
+  
+  const loadAgents = async () => {
+    const configs = await getAllAgentConfigs();
+    
+    // Transform to work with existing UI
+    const transformedAgents = configs.map(config => ({
+      ...config,
+      role: getPlatformRole(config.platform),
+      status: config.isActive ? 'active' as AgentStatus : 'inactive' as AgentStatus,
+      description: getPlatformDescription(config.platform),
+      tone: config.personality.tone,
+      conversationsToday: Math.floor(Math.random() * 100), // Mock data
+      topTopic: getTopTopic(config.type),
+      sentiment: Math.floor(70 + Math.random() * 30), // Mock data
+      color: getAgentColor(config.type),
+    }));
+    
+    setAgents(transformedAgents);
+  };
+  
+  const toggleAgentStatus = async (agent: any) => {
+    try {
+      const newStatus = agent.status === 'active' ? 'inactive' : 'active';
+      await updateAgentConfig(agent.type as AgentType, { 
+        isActive: newStatus === 'active'
+      });
+      
+      // Update local state
+      setAgents(agents.map(a => {
+        if (a.id === agent.id) {
+          return { ...a, status: newStatus as AgentStatus };
+        }
+        return a;
+      }));
+      
+      toast.success(`${agent.name} is now ${newStatus}`);
+    } catch (err) {
+      toast.error(`Failed to update ${agent.name}'s status`);
+    }
+  };
+  
+  // Helper functions
+  const getPlatformRole = (platform: PlatformType): string => {
+    switch (platform) {
+      case 'ihealth-sync': return 'Frontline AI for wellness users';
+      case 'nurse-sync': return 'AI companion for nurses';
+      case 'medic-sync': return 'Assistant to doctors and medical staff';
+      case 'command': return 'Core intelligence, admin-only control panel AI';
+      default: return '';
+    }
+  };
+  
+  const getPlatformDescription = (platform: PlatformType): string => {
+    switch (platform) {
+      case 'ihealth-sync': return 'Handles daily wellness check-ins, device setup help, and booking calls.';
+      case 'nurse-sync': return 'Handles clock-in workflows, care plans, training prompts, and support questions.';
+      case 'medic-sync': return 'Summarizes patient notes, assists with documentation, and provides care suggestions.';
+      case 'command': return 'Oversees and trains the other agents, providing strategic insights to the admin.';
+      default: return '';
+    }
+  };
+  
+  const getTopTopic = (agentType: AgentType): string => {
+    switch (agentType) {
+      case 'anna': return 'Medication reminders';
+      case 'emma': return 'Patient care plans';
+      case 'julia': return 'Documentation assistance';
+      case 'isabella': return 'Agent performance analysis';
+      default: return '';
+    }
+  };
+  
+  const getAgentColor = (agentType: AgentType): string => {
+    switch (agentType) {
+      case 'anna': return '#A390E4'; // Lilac
+      case 'emma': return '#10B981'; // Emerald Green
+      case 'julia': return '#60A5FA'; // Sky Blue
+      case 'isabella': return '#FEF3C7'; // Ivory
+      default: return '#CBD5E1';
+    }
+  };
+  
   const filteredAgents = status 
     ? agents.filter(agent => agent.status === status)
     : agents;
 
   return (
     <ScrollArea className="h-[calc(100vh-320px)]">
+      {loading && <div className="flex justify-center p-4">Loading agents...</div>}
+      {error && <div className="text-destructive p-4">{error}</div>}
+      
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {filteredAgents.map((agent) => (
           <Card 
@@ -147,23 +176,37 @@ export const AgentList: React.FC<AgentListProps> = ({
             <Separator />
             <CardFooter className="p-2 justify-between">
               <div className="flex space-x-1">
-                <Button size="icon" variant="ghost">
+                <Button size="icon" variant="ghost" title="View conversations">
                   <MessageSquare className="h-4 w-4" />
                 </Button>
-                <Button size="icon" variant="ghost">
+                <Button size="icon" variant="ghost" title="View analytics">
                   <BarChart2 className="h-4 w-4" />
                 </Button>
+                {agent.type === 'isabella' && (
+                  <Button size="icon" variant="ghost" title="Command Console">
+                    <Zap className="h-4 w-4" />
+                  </Button>
+                )}
               </div>
               <div className="flex space-x-1">
-                <Button size="icon" variant="ghost">
+                <Button 
+                  size="icon" 
+                  variant="ghost"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    toggleAgentStatus(agent);
+                  }}
+                >
                   {agent.status === 'active' ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
                 </Button>
                 <Button size="icon" variant="ghost">
                   <Edit className="h-4 w-4" />
                 </Button>
-                <Button size="icon" variant="ghost" className="text-destructive hover:text-destructive">
-                  <Trash2 className="h-4 w-4" />
-                </Button>
+                {agent.type !== 'isabella' && (
+                  <Button size="icon" variant="ghost" className="text-destructive hover:text-destructive">
+                    <Trash2 className="h-4 w-4" />
+                  </Button>
+                )}
               </div>
             </CardFooter>
           </Card>
