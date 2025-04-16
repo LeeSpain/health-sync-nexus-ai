@@ -126,7 +126,7 @@ export function DashboardSidebar() {
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <Link to="/settings" className={`flex items-center ${location.pathname.startsWith('/settings') ? 'text-primary' : ''}`}>
+                  <Link to="/settings" className={`flex items-center ${location.pathname === '/settings' ? 'text-primary' : ''}`}>
                     <Settings className="mr-2 h-4 w-4" />
                     <span>Settings</span>
                   </Link>

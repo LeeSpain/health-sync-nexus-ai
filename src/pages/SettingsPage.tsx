@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { DashboardLayout } from '@/components/layout/DashboardLayout';
 import { 
@@ -880,3 +881,779 @@ const SettingsPage = () => {
                       </div>
                       <Switch id="failed-attempts" defaultChecked />
                     </div>
+                  </div>
+                  
+                  <Separator />
+                  
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-medium">Data Protection</h3>
+                    
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <Label htmlFor="conversation-encryption">Conversation Encryption</Label>
+                        <p className="text-xs text-muted-foreground">Enable end-to-end encryption for all conversations</p>
+                      </div>
+                      <Switch id="conversation-encryption" defaultChecked />
+                    </div>
+                    
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <Label htmlFor="pii-redaction">PII Redaction</Label>
+                        <p className="text-xs text-muted-foreground">Automatically detect and redact personal identifiable information</p>
+                      </div>
+                      <Switch id="pii-redaction" defaultChecked />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="data-retention">Data Retention Period</Label>
+                      <Select defaultValue="365">
+                        <SelectTrigger id="data-retention">
+                          <SelectValue placeholder="Select period" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="30">30 days</SelectItem>
+                          <SelectItem value="90">90 days</SelectItem>
+                          <SelectItem value="180">180 days</SelectItem>
+                          <SelectItem value="365">1 year</SelectItem>
+                          <SelectItem value="730">2 years</SelectItem>
+                          <SelectItem value="1825">5 years</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <p className="text-xs text-muted-foreground">How long to keep conversation data before automatic deletion</p>
+                    </div>
+                  </div>
+                  
+                  <Separator />
+                  
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-medium">Compliance</h3>
+                    
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <Label htmlFor="hipaa-compliance">HIPAA Compliance Mode</Label>
+                        <p className="text-xs text-muted-foreground">Enable additional security features for HIPAA compliance</p>
+                      </div>
+                      <Switch id="hipaa-compliance" defaultChecked />
+                    </div>
+                    
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <Label htmlFor="audit-logging">Enhanced Audit Logging</Label>
+                        <p className="text-xs text-muted-foreground">Maintain detailed logs of all system access and activities</p>
+                      </div>
+                      <Switch id="audit-logging" defaultChecked />
+                    </div>
+                    
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <Label htmlFor="ip-restriction">IP Restriction</Label>
+                        <p className="text-xs text-muted-foreground">Limit system access to specific IP addresses or ranges</p>
+                      </div>
+                      <Switch id="ip-restriction" />
+                    </div>
+                  </div>
+                </CardContent>
+                <CardFooter className="border-t px-6 py-4 flex justify-between">
+                  <Button variant="ghost">Reset to Defaults</Button>
+                  <Button>Save Changes</Button>
+                </CardFooter>
+              </Card>
+            )}
+            
+            {activeTab === "users" && (
+              <Card>
+                <CardHeader>
+                  <CardTitle>User Access</CardTitle>
+                  <CardDescription>Manage user accounts and permission settings</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-lg font-medium">System Users</h3>
+                    <Button size="sm">
+                      <UserPlus className="mr-2 h-4 w-4" />
+                      Add User
+                    </Button>
+                  </div>
+                  
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Name</TableHead>
+                        <TableHead>Email</TableHead>
+                        <TableHead>Role</TableHead>
+                        <TableHead>Status</TableHead>
+                        <TableHead>Last Active</TableHead>
+                        <TableHead className="text-right">Actions</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      <TableRow>
+                        <TableCell>
+                          <div className="flex items-center gap-2">
+                            <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
+                              <span className="font-medium text-xs">JD</span>
+                            </div>
+                            <span>John Doe</span>
+                          </div>
+                        </TableCell>
+                        <TableCell>john.doe@example.com</TableCell>
+                        <TableCell>
+                          <Badge>Administrator</Badge>
+                        </TableCell>
+                        <TableCell>
+                          <Badge variant="outline" className="bg-emerald-50 text-emerald-700 border-emerald-200">
+                            Active
+                          </Badge>
+                        </TableCell>
+                        <TableCell>Now</TableCell>
+                        <TableCell className="text-right">
+                          <Button variant="ghost" size="icon">
+                            <UserCog className="h-4 w-4" />
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell>
+                          <div className="flex items-center gap-2">
+                            <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
+                              <span className="font-medium text-xs">JS</span>
+                            </div>
+                            <span>Jane Smith</span>
+                          </div>
+                        </TableCell>
+                        <TableCell>jane.smith@example.com</TableCell>
+                        <TableCell>
+                          <Badge variant="outline">Supervisor</Badge>
+                        </TableCell>
+                        <TableCell>
+                          <Badge variant="outline" className="bg-emerald-50 text-emerald-700 border-emerald-200">
+                            Active
+                          </Badge>
+                        </TableCell>
+                        <TableCell>2 hours ago</TableCell>
+                        <TableCell className="text-right">
+                          <Button variant="ghost" size="icon">
+                            <UserCog className="h-4 w-4" />
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell>
+                          <div className="flex items-center gap-2">
+                            <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
+                              <span className="font-medium text-xs">RJ</span>
+                            </div>
+                            <span>Robert Johnson</span>
+                          </div>
+                        </TableCell>
+                        <TableCell>robert.j@example.com</TableCell>
+                        <TableCell>
+                          <Badge variant="outline">Agent Manager</Badge>
+                        </TableCell>
+                        <TableCell>
+                          <Badge variant="outline" className="bg-amber-50 text-amber-700 border-amber-200">
+                            Away
+                          </Badge>
+                        </TableCell>
+                        <TableCell>1 day ago</TableCell>
+                        <TableCell className="text-right">
+                          <Button variant="ghost" size="icon">
+                            <UserCog className="h-4 w-4" />
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                  
+                  <Separator />
+                  
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-medium">Role Permissions</h3>
+                    
+                    <div className="border rounded-md p-4 space-y-4">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <Shield className="h-5 w-5" />
+                          <span className="font-medium">Administrator</span>
+                        </div>
+                        <Badge>System Role</Badge>
+                      </div>
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                          <div className="flex items-center justify-between">
+                            <Label htmlFor="admin-manage-users">Manage Users</Label>
+                            <Switch id="admin-manage-users" defaultChecked />
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <Label htmlFor="admin-manage-agents">Manage Agents</Label>
+                            <Switch id="admin-manage-agents" defaultChecked />
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <Label htmlFor="admin-system-settings">System Settings</Label>
+                            <Switch id="admin-system-settings" defaultChecked />
+                          </div>
+                        </div>
+                        <div className="space-y-2">
+                          <div className="flex items-center justify-between">
+                            <Label htmlFor="admin-view-analytics">View Analytics</Label>
+                            <Switch id="admin-view-analytics" defaultChecked />
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <Label htmlFor="admin-api-access">API Access</Label>
+                            <Switch id="admin-api-access" defaultChecked />
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <Label htmlFor="admin-export-data">Export Data</Label>
+                            <Switch id="admin-export-data" defaultChecked />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="border rounded-md p-4 space-y-4">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <Shield className="h-5 w-5" />
+                          <span className="font-medium">Supervisor</span>
+                        </div>
+                        <Badge variant="outline">Custom Role</Badge>
+                      </div>
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                          <div className="flex items-center justify-between">
+                            <Label htmlFor="super-manage-users">Manage Users</Label>
+                            <Switch id="super-manage-users" />
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <Label htmlFor="super-manage-agents">Manage Agents</Label>
+                            <Switch id="super-manage-agents" defaultChecked />
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <Label htmlFor="super-system-settings">System Settings</Label>
+                            <Switch id="super-system-settings" />
+                          </div>
+                        </div>
+                        <div className="space-y-2">
+                          <div className="flex items-center justify-between">
+                            <Label htmlFor="super-view-analytics">View Analytics</Label>
+                            <Switch id="super-view-analytics" defaultChecked />
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <Label htmlFor="super-api-access">API Access</Label>
+                            <Switch id="super-api-access" />
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <Label htmlFor="super-export-data">Export Data</Label>
+                            <Switch id="super-export-data" defaultChecked />
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <Button variant="outline" size="sm">Edit Role</Button>
+                    </div>
+                    
+                    <Button variant="outline">
+                      <PlusCircle className="mr-2 h-4 w-4" />
+                      Create New Role
+                    </Button>
+                  </div>
+                </CardContent>
+                <CardFooter className="border-t px-6 py-4 flex justify-between">
+                  <Button variant="ghost">Reset to Defaults</Button>
+                  <Button>Save Changes</Button>
+                </CardFooter>
+              </Card>
+            )}
+            
+            {activeTab === "notifications" && (
+              <Card>
+                <CardHeader>
+                  <CardTitle>Notification Settings</CardTitle>
+                  <CardDescription>Configure system alerts and notification preferences</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-medium">Notification Channels</h3>
+                    
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <BellRing className="h-4 w-4" />
+                          <Label htmlFor="in-app">In-App Notifications</Label>
+                        </div>
+                        <Switch id="in-app" defaultChecked />
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <Mail className="h-4 w-4" />
+                          <Label htmlFor="email">Email Notifications</Label>
+                        </div>
+                        <Switch id="email" defaultChecked />
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <MessagesSquare className="h-4 w-4" />
+                          <Label htmlFor="sms">SMS Notifications</Label>
+                        </div>
+                        <Switch id="sms" />
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <PhoneCall className="h-4 w-4" />
+                          <Label htmlFor="phone">Phone Call Alerts</Label>
+                        </div>
+                        <Switch id="phone" />
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <Separator />
+                  
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-medium">Alert Types</h3>
+                    
+                    <div className="border rounded-md p-4 space-y-4">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <AlertCircle className="h-5 w-5 text-red-500" />
+                          <span className="font-medium">Critical Alerts</span>
+                        </div>
+                        <Badge className="bg-red-500">High Priority</Badge>
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between">
+                          <Label htmlFor="alert-system-down">System Outages</Label>
+                          <div className="flex items-center gap-2">
+                            <Checkbox id="alert-system-down-email" defaultChecked />
+                            <Mail className="h-4 w-4" />
+                            <Checkbox id="alert-system-down-sms" defaultChecked />
+                            <MessagesSquare className="h-4 w-4" />
+                            <Checkbox id="alert-system-down-call" defaultChecked />
+                            <PhoneCall className="h-4 w-4" />
+                          </div>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <Label htmlFor="alert-security">Security Breaches</Label>
+                          <div className="flex items-center gap-2">
+                            <Checkbox id="alert-security-email" defaultChecked />
+                            <Mail className="h-4 w-4" />
+                            <Checkbox id="alert-security-sms" defaultChecked />
+                            <MessagesSquare className="h-4 w-4" />
+                            <Checkbox id="alert-security-call" />
+                            <PhoneCall className="h-4 w-4" />
+                          </div>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <Label htmlFor="alert-api-disconnection">API Disconnections</Label>
+                          <div className="flex items-center gap-2">
+                            <Checkbox id="alert-api-email" defaultChecked />
+                            <Mail className="h-4 w-4" />
+                            <Checkbox id="alert-api-sms" />
+                            <MessagesSquare className="h-4 w-4" />
+                            <Checkbox id="alert-api-call" />
+                            <PhoneCall className="h-4 w-4" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="border rounded-md p-4 space-y-4">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <AlertTriangle className="h-5 w-5 text-amber-500" />
+                          <span className="font-medium">Important Notifications</span>
+                        </div>
+                        <Badge className="bg-amber-500">Medium Priority</Badge>
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between">
+                          <Label htmlFor="notification-escalations">Agent Escalations</Label>
+                          <div className="flex items-center gap-2">
+                            <Checkbox id="notification-escalations-app" defaultChecked />
+                            <BellRing className="h-4 w-4" />
+                            <Checkbox id="notification-escalations-email" defaultChecked />
+                            <Mail className="h-4 w-4" />
+                            <Checkbox id="notification-escalations-sms" />
+                            <MessagesSquare className="h-4 w-4" />
+                          </div>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <Label htmlFor="notification-capacity">System Capacity Warnings</Label>
+                          <div className="flex items-center gap-2">
+                            <Checkbox id="notification-capacity-app" defaultChecked />
+                            <BellRing className="h-4 w-4" />
+                            <Checkbox id="notification-capacity-email" defaultChecked />
+                            <Mail className="h-4 w-4" />
+                            <Checkbox id="notification-capacity-sms" />
+                            <MessagesSquare className="h-4 w-4" />
+                          </div>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <Label htmlFor="notification-user-activity">Unusual User Activity</Label>
+                          <div className="flex items-center gap-2">
+                            <Checkbox id="notification-activity-app" defaultChecked />
+                            <BellRing className="h-4 w-4" />
+                            <Checkbox id="notification-activity-email" defaultChecked />
+                            <Mail className="h-4 w-4" />
+                            <Checkbox id="notification-activity-sms" />
+                            <MessagesSquare className="h-4 w-4" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="border rounded-md p-4 space-y-4">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <Bell className="h-5 w-5 text-blue-500" />
+                          <span className="font-medium">General Notifications</span>
+                        </div>
+                        <Badge className="bg-blue-500">Low Priority</Badge>
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between">
+                          <Label htmlFor="notification-updates">System Updates</Label>
+                          <div className="flex items-center gap-2">
+                            <Checkbox id="notification-updates-app" defaultChecked />
+                            <BellRing className="h-4 w-4" />
+                            <Checkbox id="notification-updates-email" defaultChecked />
+                            <Mail className="h-4 w-4" />
+                          </div>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <Label htmlFor="notification-reports">Analytics Reports</Label>
+                          <div className="flex items-center gap-2">
+                            <Checkbox id="notification-reports-app" defaultChecked />
+                            <BellRing className="h-4 w-4" />
+                            <Checkbox id="notification-reports-email" defaultChecked />
+                            <Mail className="h-4 w-4" />
+                          </div>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <Label htmlFor="notification-new-users">New User Registrations</Label>
+                          <div className="flex items-center gap-2">
+                            <Checkbox id="notification-users-app" defaultChecked />
+                            <BellRing className="h-4 w-4" />
+                            <Checkbox id="notification-users-email" />
+                            <Mail className="h-4 w-4" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <Separator />
+                  
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-medium">Notification Schedule</h3>
+                    
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <Label htmlFor="do-not-disturb">Do Not Disturb Mode</Label>
+                        <p className="text-xs text-muted-foreground">Disable all notifications during specified hours</p>
+                      </div>
+                      <Switch id="do-not-disturb" />
+                    </div>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="quiet-start">Quiet Hours Start</Label>
+                        <Select defaultValue="22">
+                          <SelectTrigger id="quiet-start">
+                            <SelectValue placeholder="Select time" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {Array.from({ length: 24 }).map((_, i) => (
+                              <SelectItem key={i} value={String(i)}>
+                                {i === 0 ? "12:00 AM" : i < 12 ? `${i}:00 AM` : i === 12 ? "12:00 PM" : `${i - 12}:00 PM`}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="quiet-end">Quiet Hours End</Label>
+                        <Select defaultValue="7">
+                          <SelectTrigger id="quiet-end">
+                            <SelectValue placeholder="Select time" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {Array.from({ length: 24 }).map((_, i) => (
+                              <SelectItem key={i} value={String(i)}>
+                                {i === 0 ? "12:00 AM" : i < 12 ? `${i}:00 AM` : i === 12 ? "12:00 PM" : `${i - 12}:00 PM`}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label>Active Days</Label>
+                      <div className="flex flex-wrap gap-2">
+                        {["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].map((day) => (
+                          <div key={day} className="flex items-center space-x-2">
+                            <Checkbox id={`day-${day.toLowerCase()}`} defaultChecked={day !== "Saturday" && day !== "Sunday"} />
+                            <Label htmlFor={`day-${day.toLowerCase()}`}>{day}</Label>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+                <CardFooter className="border-t px-6 py-4 flex justify-between">
+                  <Button variant="ghost">Reset to Defaults</Button>
+                  <Button>Save Changes</Button>
+                </CardFooter>
+              </Card>
+            )}
+            
+            {activeTab === "advanced" && (
+              <Card>
+                <CardHeader>
+                  <CardTitle>Advanced Settings</CardTitle>
+                  <CardDescription>Configure system-level and technical settings</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-medium">System Performance</h3>
+                    
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <Label htmlFor="concurrent-agents">Maximum Concurrent Agents</Label>
+                        <p className="text-xs text-muted-foreground">Limit the number of agents running simultaneously</p>
+                      </div>
+                      <Select defaultValue="10" className="w-[100px]">
+                        <SelectTrigger id="concurrent-agents">
+                          <SelectValue placeholder="Select limit" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="5">5</SelectItem>
+                          <SelectItem value="10">10</SelectItem>
+                          <SelectItem value="20">20</SelectItem>
+                          <SelectItem value="50">50</SelectItem>
+                          <SelectItem value="100">100</SelectItem>
+                          <SelectItem value="unlimited">Unlimited</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <Label htmlFor="rate-limiting">API Rate Limiting</Label>
+                        <p className="text-xs text-muted-foreground">Restrict API requests per minute to prevent overloading</p>
+                      </div>
+                      <Switch id="rate-limiting" defaultChecked />
+                    </div>
+                    
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <Label htmlFor="cache-responses">Cache Agent Responses</Label>
+                        <p className="text-xs text-muted-foreground">Store common responses to improve response times</p>
+                      </div>
+                      <Switch id="cache-responses" defaultChecked />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="log-level">System Log Level</Label>
+                      <Select defaultValue="info">
+                        <SelectTrigger id="log-level">
+                          <SelectValue placeholder="Select log level" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="error">Error Only</SelectItem>
+                          <SelectItem value="warn">Warning</SelectItem>
+                          <SelectItem value="info">Information</SelectItem>
+                          <SelectItem value="debug">Debug</SelectItem>
+                          <SelectItem value="trace">Trace (Verbose)</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+                  
+                  <Separator />
+                  
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-medium">Maintenance</h3>
+                    
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <Label htmlFor="maintenance-mode">Maintenance Mode</Label>
+                        <p className="text-xs text-muted-foreground">Temporarily disable the system for maintenance</p>
+                      </div>
+                      <Switch id="maintenance-mode" />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="scheduled-maintenance">Scheduled Maintenance</Label>
+                      <div className="flex items-center gap-2">
+                        <Input type="datetime-local" id="scheduled-maintenance" className="flex-1" />
+                        <Select defaultValue="60" className="w-[120px]">
+                          <SelectTrigger id="maintenance-duration">
+                            <SelectValue placeholder="Duration" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="15">15 minutes</SelectItem>
+                            <SelectItem value="30">30 minutes</SelectItem>
+                            <SelectItem value="60">1 hour</SelectItem>
+                            <SelectItem value="120">2 hours</SelectItem>
+                            <SelectItem value="240">4 hours</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <p className="text-xs text-muted-foreground">
+                        Schedule system maintenance with automatic notifications
+                      </p>
+                    </div>
+                    
+                    <div className="border rounded-md p-4 space-y-4">
+                      <h4 className="font-medium">System Maintenance Actions</h4>
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <Button variant="outline" className="justify-start">
+                          <History className="mr-2 h-4 w-4" />
+                          View System Logs
+                        </Button>
+                        <Button variant="outline" className="justify-start">
+                          <Download className="mr-2 h-4 w-4" />
+                          Backup System Data
+                        </Button>
+                        <Button variant="outline" className="justify-start">
+                          <Upload className="mr-2 h-4 w-4" />
+                          Restore From Backup
+                        </Button>
+                        <Button variant="outline" className="justify-start">
+                          <RefreshCw className="mr-2 h-4 w-4" />
+                          Clear System Cache
+                        </Button>
+                      </div>
+                      
+                      <Button variant="destructive" className="w-full">
+                        <AlertTriangle className="mr-2 h-4 w-4" />
+                        Reset System to Factory Defaults
+                      </Button>
+                    </div>
+                  </div>
+                  
+                  <Separator />
+                  
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-medium">Data Management</h3>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="data-export-format">Data Export Format</Label>
+                      <Select defaultValue="json">
+                        <SelectTrigger id="data-export-format">
+                          <SelectValue placeholder="Select format" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="csv">CSV</SelectItem>
+                          <SelectItem value="json">JSON</SelectItem>
+                          <SelectItem value="xml">XML</SelectItem>
+                          <SelectItem value="xlsx">Excel (XLSX)</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <Label htmlFor="auto-cleanup">Automatic Data Cleanup</Label>
+                        <p className="text-xs text-muted-foreground">Periodically remove old temporary files and logs</p>
+                      </div>
+                      <Switch id="auto-cleanup" defaultChecked />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="database-optimization">Database Optimization Schedule</Label>
+                      <Select defaultValue="weekly">
+                        <SelectTrigger id="database-optimization">
+                          <SelectValue placeholder="Select schedule" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="daily">Daily</SelectItem>
+                          <SelectItem value="weekly">Weekly</SelectItem>
+                          <SelectItem value="biweekly">Bi-Weekly</SelectItem>
+                          <SelectItem value="monthly">Monthly</SelectItem>
+                          <SelectItem value="manual">Manual Only</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label>Danger Zone</Label>
+                      <div className="border border-destructive/30 rounded-md p-4 space-y-4 bg-destructive/5">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <h4 className="font-medium text-destructive">Purge Conversation History</h4>
+                            <p className="text-xs text-muted-foreground">
+                              Permanently delete all conversation records older than the selected period
+                            </p>
+                          </div>
+                          <Dialog>
+                            <DialogTrigger asChild>
+                              <Button variant="destructive" size="sm">
+                                <Trash2 className="mr-2 h-4 w-4" />
+                                Purge Data
+                              </Button>
+                            </DialogTrigger>
+                            <DialogContent>
+                              <DialogHeader>
+                                <DialogTitle>Confirm Data Purge</DialogTitle>
+                                <DialogDescription>
+                                  This action cannot be undone. This will permanently delete selected conversation data.
+                                </DialogDescription>
+                              </DialogHeader>
+                              <div className="space-y-4 py-4">
+                                <div className="space-y-2">
+                                  <Label htmlFor="purge-period">Select Period</Label>
+                                  <Select defaultValue="365">
+                                    <SelectTrigger id="purge-period">
+                                      <SelectValue placeholder="Select period" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                      <SelectItem value="30">Older than 30 days</SelectItem>
+                                      <SelectItem value="90">Older than 90 days</SelectItem>
+                                      <SelectItem value="180">Older than 6 months</SelectItem>
+                                      <SelectItem value="365">Older than 1 year</SelectItem>
+                                      <SelectItem value="all">All conversation data</SelectItem>
+                                    </SelectContent>
+                                  </Select>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                  <Checkbox id="confirm-purge" />
+                                  <Label htmlFor="confirm-purge">
+                                    I understand this action cannot be undone
+                                  </Label>
+                                </div>
+                              </div>
+                              <DialogFooter>
+                                <Button variant="outline">Cancel</Button>
+                                <Button variant="destructive">Confirm Purge</Button>
+                              </DialogFooter>
+                            </DialogContent>
+                          </Dialog>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+                <CardFooter className="border-t px-6 py-4 flex justify-between">
+                  <Button variant="ghost">Reset to Defaults</Button>
+                  <Button>Save Changes</Button>
+                </CardFooter>
+              </Card>
+            )}
+          </div>
+        </div>
+      </div>
+    </DashboardLayout>
+  );
+};
+
+export default SettingsPage;
+
