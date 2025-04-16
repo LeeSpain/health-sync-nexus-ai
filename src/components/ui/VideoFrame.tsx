@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -7,9 +7,19 @@ interface VideoFrameProps {
   videoUrl: string;
 }
 
+// Create a variable outside of the component to track if the video has been shown
+let hasVideoBeenShown = false;
+
 export function VideoFrame({ videoUrl }: VideoFrameProps) {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(!hasVideoBeenShown);
   const [isMinimized, setIsMinimized] = useState(false);
+
+  // Mark the video as shown when the component mounts
+  useEffect(() => {
+    if (!hasVideoBeenShown && isVisible) {
+      hasVideoBeenShown = true;
+    }
+  }, [isVisible]);
 
   // Extract YouTube video ID from URL
   const getYouTubeId = (url: string) => {
@@ -59,7 +69,7 @@ export function VideoFrame({ videoUrl }: VideoFrameProps) {
           <iframe
             width="100%"
             height="100%"
-            src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0`}
+            src={`https://www.youtube.com/embed/${videoId}?autoplay=0&mute=0`}
             title="YouTube video player"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { DashboardSidebar } from './DashboardSidebar';
 import { DashboardHeader } from './DashboardHeader';
@@ -11,6 +12,9 @@ interface DashboardLayoutProps {
 }
 
 export function DashboardLayout({ children }: DashboardLayoutProps) {
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+  
   return (
     <SidebarProvider>
       <div className="flex min-h-screen w-full bg-background">
@@ -38,7 +42,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           },
         }}
       />
-      <VideoFrame videoUrl="https://youtu.be/S3AxFHEAVWc" />
+      {isHomePage && <VideoFrame videoUrl="https://youtu.be/S3AxFHEAVWc" />}
     </SidebarProvider>
   );
 }
