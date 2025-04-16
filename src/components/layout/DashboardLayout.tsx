@@ -4,6 +4,7 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { DashboardSidebar } from './DashboardSidebar';
 import { DashboardHeader } from './DashboardHeader';
 import { Toaster } from "@/components/ui/sonner";
+import { VideoFrame } from "@/components/ui/VideoFrame";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -37,6 +38,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           },
         }}
       />
+      <VideoFrame videoUrl="https://youtu.be/S3AxFHEAVWc" />
     </SidebarProvider>
   );
 }
