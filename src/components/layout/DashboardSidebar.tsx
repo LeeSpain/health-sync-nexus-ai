@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { 
   LayoutDashboard, 
   MessageSquare, 
@@ -29,6 +29,8 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 
 export function DashboardSidebar() {
+  const location = useLocation();
+  
   return (
     <Sidebar className="border-r">
       <SidebarHeader className="p-4">
@@ -50,7 +52,7 @@ export function DashboardSidebar() {
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <Link to="/" className="flex items-center">
+                  <Link to="/" className={`flex items-center ${location.pathname === '/' ? 'text-primary' : ''}`}>
                     <LayoutDashboard className="mr-2 h-4 w-4" />
                     <span>Dashboard</span>
                   </Link>
@@ -58,7 +60,7 @@ export function DashboardSidebar() {
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <Link to="/command" className="flex items-center">
+                  <Link to="/command" className={`flex items-center ${location.pathname === '/command' ? 'text-primary' : ''}`}>
                     <Mic className="mr-2 h-4 w-4" />
                     <span>Command Console</span>
                   </Link>
@@ -66,7 +68,7 @@ export function DashboardSidebar() {
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <Link to="/conversations" className="flex items-center">
+                  <Link to="/conversations" className={`flex items-center ${location.pathname === '/conversations' ? 'text-primary' : ''}`}>
                     <MessageSquare className="mr-2 h-4 w-4" />
                     <span>Conversations</span>
                   </Link>
@@ -74,7 +76,7 @@ export function DashboardSidebar() {
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <Link to="/agents" className="flex items-center">
+                  <Link to="/agents" className={`flex items-center ${location.pathname === '/agents' ? 'text-primary' : ''}`}>
                     <Users className="mr-2 h-4 w-4" />
                     <span>Agent Management</span>
                   </Link>
@@ -82,7 +84,7 @@ export function DashboardSidebar() {
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <Link to="/platforms" className="flex items-center">
+                  <Link to="/platforms" className={`flex items-center ${location.pathname === '/platforms' ? 'text-primary' : ''}`}>
                     <Globe className="mr-2 h-4 w-4" />
                     <span>Connected Platforms</span>
                   </Link>
@@ -100,7 +102,7 @@ export function DashboardSidebar() {
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <Link to="/analytics" className="flex items-center">
+                  <Link to="/analytics" className={`flex items-center ${location.pathname === '/analytics' ? 'text-primary' : ''}`}>
                     <Activity className="mr-2 h-4 w-4" />
                     <span>Analytics</span>
                   </Link>
@@ -108,7 +110,7 @@ export function DashboardSidebar() {
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <Link to="/escalations" className="flex items-center">
+                  <Link to="/escalations" className={`flex items-center ${location.pathname === '/escalations' ? 'text-primary' : ''}`}>
                     <GitBranch className="mr-2 h-4 w-4" />
                     <span>Escalation Rules</span>
                   </Link>
@@ -116,7 +118,7 @@ export function DashboardSidebar() {
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <Link to="/training" className="flex items-center">
+                  <Link to="/training" className={`flex items-center ${location.pathname === '/training' ? 'text-primary' : ''}`}>
                     <BookOpen className="mr-2 h-4 w-4" />
                     <span>Training Module</span>
                   </Link>
@@ -124,7 +126,7 @@ export function DashboardSidebar() {
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <Link to="/settings" className="flex items-center">
+                  <Link to="/settings" className={`flex items-center ${location.pathname.startsWith('/settings') ? 'text-primary' : ''}`}>
                     <Settings className="mr-2 h-4 w-4" />
                     <span>Settings</span>
                   </Link>

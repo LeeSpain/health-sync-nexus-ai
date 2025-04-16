@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { DashboardLayout } from '@/components/layout/DashboardLayout';
 import { 
@@ -34,7 +33,31 @@ import {
   ServerCog,
   Database,
   Webhook,
-  CloudCog
+  CloudCog,
+  KeyRound,
+  AlertTriangle,
+  FileKey,
+  UserCheck,
+  UserPlus,
+  UserX,
+  Eye,
+  EyeOff,
+  GlobeIcon,
+  Check,
+  MessageSquare,
+  AlertCircle,
+  History,
+  Upload,
+  Download,
+  CalendarClock,
+  Trash2,
+  Archive,
+  Fingerprint,
+  Mail,
+  PhoneCall,
+  BellRing,
+  MessagesSquare,
+  PlusCircle
 } from 'lucide-react';
 import {
   Form,
@@ -52,9 +75,38 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { toast } from "sonner";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { Checkbox } from "@/components/ui/checkbox";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const SettingsPage = () => {
   const [activeTab, setActiveTab] = useState("general");
+  
+  const handleSaveChanges = () => {
+    toast.success("Settings saved successfully", {
+      description: "Your changes have been applied",
+    });
+  };
   
   return (
     <DashboardLayout>
@@ -73,7 +125,7 @@ const SettingsPage = () => {
         
         <div className="flex items-center justify-between">
           <h1 className="text-3xl font-bold">Settings</h1>
-          <Button>
+          <Button onClick={handleSaveChanges}>
             <Save className="mr-2 h-4 w-4" />
             Save Changes
           </Button>
@@ -611,35 +663,220 @@ const SettingsPage = () => {
               </Card>
             )}
             
-            {activeTab !== "general" && activeTab !== "api" && activeTab !== "voice" && (
+            {activeTab === "language" && (
               <Card>
                 <CardHeader>
-                  <CardTitle>{activeTab.charAt(0).toUpperCase() + activeTab.slice(1)} Settings</CardTitle>
-                  <CardDescription>This settings page is under development</CardDescription>
+                  <CardTitle>Language Settings</CardTitle>
+                  <CardDescription>Configure language preferences and translation settings</CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-6 flex flex-col items-center justify-center py-8">
-                  <div className="w-16 h-16 rounded-full bg-secondary/30 flex items-center justify-center mb-4">
-                    {activeTab === "language" && <Languages className="h-8 w-8 text-muted-foreground" />}
-                    {activeTab === "security" && <Shield className="h-8 w-8 text-muted-foreground" />}
-                    {activeTab === "users" && <Users className="h-8 w-8 text-muted-foreground" />}
-                    {activeTab === "notifications" && <Bell className="h-8 w-8 text-muted-foreground" />}
-                    {activeTab === "advanced" && <ServerCog className="h-8 w-8 text-muted-foreground" />}
+                <CardContent className="space-y-6">
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-medium">System Language</h3>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="default-language">Default System Language</Label>
+                      <Select defaultValue="en">
+                        <SelectTrigger id="default-language">
+                          <SelectValue placeholder="Select language" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="en">English (US)</SelectItem>
+                          <SelectItem value="en-gb">English (UK)</SelectItem>
+                          <SelectItem value="es">Spanish</SelectItem>
+                          <SelectItem value="fr">French</SelectItem>
+                          <SelectItem value="de">German</SelectItem>
+                          <SelectItem value="pt">Portuguese</SelectItem>
+                          <SelectItem value="zh">Chinese (Simplified)</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <p className="text-xs text-muted-foreground">Primary language for the admin interface</p>
+                    </div>
+                    
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <Label htmlFor="date-format">Date & Time Format</Label>
+                        <p className="text-xs text-muted-foreground">Configure how dates and times are displayed</p>
+                      </div>
+                      <Select defaultValue="us" className="w-[200px]">
+                        <SelectTrigger id="date-format">
+                          <SelectValue placeholder="Select format" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="us">MM/DD/YYYY, 12-hour</SelectItem>
+                          <SelectItem value="eu">DD/MM/YYYY, 24-hour</SelectItem>
+                          <SelectItem value="iso">YYYY-MM-DD, 24-hour</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
                   </div>
-                  <h3 className="text-xl font-medium mb-2">Coming Soon</h3>
-                  <p className="text-muted-foreground text-center max-w-md mb-6">
-                    The {activeTab} settings module is currently under development and will be available in an upcoming release.
-                  </p>
+                  
+                  <Separator />
+                  
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-medium">Agent Conversation Languages</h3>
+                    
+                    <div className="space-y-2">
+                      <Label>Supported Languages</Label>
+                      <p className="text-xs text-muted-foreground mb-2">Languages agents can use to communicate with users</p>
+                      
+                      <div className="grid grid-cols-2 gap-2">
+                        <div className="flex items-center space-x-2">
+                          <Checkbox id="lang-en" defaultChecked />
+                          <Label htmlFor="lang-en">English</Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <Checkbox id="lang-es" defaultChecked />
+                          <Label htmlFor="lang-es">Spanish</Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <Checkbox id="lang-fr" />
+                          <Label htmlFor="lang-fr">French</Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <Checkbox id="lang-de" />
+                          <Label htmlFor="lang-de">German</Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <Checkbox id="lang-pt" />
+                          <Label htmlFor="lang-pt">Portuguese</Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <Checkbox id="lang-it" />
+                          <Label htmlFor="lang-it">Italian</Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <Checkbox id="lang-zh" />
+                          <Label htmlFor="lang-zh">Chinese</Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <Checkbox id="lang-ja" />
+                          <Label htmlFor="lang-ja">Japanese</Label>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <Label htmlFor="auto-translation">Automatic Translation</Label>
+                        <p className="text-xs text-muted-foreground">Translate messages between agents and users when languages differ</p>
+                      </div>
+                      <Switch id="auto-translation" defaultChecked />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="translation-provider">Translation Provider</Label>
+                      <Select defaultValue="openai">
+                        <SelectTrigger id="translation-provider">
+                          <SelectValue placeholder="Select provider" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="openai">OpenAI</SelectItem>
+                          <SelectItem value="google">Google Translate</SelectItem>
+                          <SelectItem value="azure">Azure Translator</SelectItem>
+                          <SelectItem value="deepl">DeepL API</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+                  
+                  <Separator />
+                  
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-medium">Localization</h3>
+                    
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <Label htmlFor="contextual-terms">Contextual Health Terminology</Label>
+                        <p className="text-xs text-muted-foreground">Adapt medical terms to regional preferences</p>
+                      </div>
+                      <Switch id="contextual-terms" defaultChecked />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="terminology-set">Default Medical Terminology</Label>
+                      <Select defaultValue="us-standard">
+                        <SelectTrigger id="terminology-set">
+                          <SelectValue placeholder="Select terminology set" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="us-standard">US Standard</SelectItem>
+                          <SelectItem value="uk-standard">UK Standard</SelectItem>
+                          <SelectItem value="eu-standard">EU Standard</SelectItem>
+                          <SelectItem value="who-standard">WHO Standard</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <p className="text-xs text-muted-foreground">Base medical terminology standards to follow</p>
+                    </div>
+                    
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <Label htmlFor="inclusive-language">Inclusive Language</Label>
+                        <p className="text-xs text-muted-foreground">Use inclusive and gender-neutral terminology</p>
+                      </div>
+                      <Switch id="inclusive-language" defaultChecked />
+                    </div>
+                  </div>
                 </CardContent>
-                <CardFooter className="border-t px-6 py-4 flex justify-center">
-                  <Button variant="outline">Return to Dashboard</Button>
+                <CardFooter className="border-t px-6 py-4 flex justify-between">
+                  <Button variant="ghost">Reset to Defaults</Button>
+                  <Button onClick={handleSaveChanges}>Save Changes</Button>
                 </CardFooter>
               </Card>
             )}
-          </div>
-        </div>
-      </div>
-    </DashboardLayout>
-  );
-};
-
-export default SettingsPage;
+            
+            {activeTab === "security" && (
+              <Card>
+                <CardHeader>
+                  <CardTitle>Security Settings</CardTitle>
+                  <CardDescription>Configure authentication, encryption, and access control settings</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-medium">Authentication</h3>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="auth-method">Primary Authentication Method</Label>
+                      <Select defaultValue="2fa">
+                        <SelectTrigger id="auth-method">
+                          <SelectValue placeholder="Select method" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="password">Password Only</SelectItem>
+                          <SelectItem value="2fa">Two-Factor Authentication</SelectItem>
+                          <SelectItem value="sso">Single Sign-On (SSO)</SelectItem>
+                          <SelectItem value="biometric">Biometric + Password</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <Label htmlFor="password-expiry">Password Expiration</Label>
+                        <p className="text-xs text-muted-foreground">Require password changes periodically</p>
+                      </div>
+                      <Switch id="password-expiry" defaultChecked />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="password-expiry-days">Password Expiry Period</Label>
+                      <Select defaultValue="90">
+                        <SelectTrigger id="password-expiry-days">
+                          <SelectValue placeholder="Select period" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="30">30 days</SelectItem>
+                          <SelectItem value="60">60 days</SelectItem>
+                          <SelectItem value="90">90 days</SelectItem>
+                          <SelectItem value="180">180 days</SelectItem>
+                          <SelectItem value="365">365 days</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <Label htmlFor="failed-attempts">Account Lockout</Label>
+                        <p className="text-xs text-muted-foreground">Lock accounts after multiple failed login attempts</p>
+                      </div>
+                      <Switch id="failed-attempts" defaultChecked />
+                    </div>
