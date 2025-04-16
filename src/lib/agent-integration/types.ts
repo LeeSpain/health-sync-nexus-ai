@@ -1,6 +1,7 @@
 
 export type AgentType = 'anna' | 'emma' | 'julia' | 'isabella';
 export type PlatformType = 'ihealth-sync' | 'nurse-sync' | 'medic-sync' | 'command';
+export type AgentStatus = 'active' | 'inactive' | 'training';
 
 export interface AgentPerformanceMetrics {
   conversationsCount: number;
@@ -26,6 +27,15 @@ export interface AgentConfiguration {
   knowledgeBaseId: string;
   isActive: boolean;
   escalatesTo: AgentType | null;
+  
+  // UI display properties (added to fix errors)
+  status?: AgentStatus;
+  role?: string;
+  description?: string;
+  conversationsToday?: number;
+  topTopic?: string;
+  sentiment?: number;
+  color?: string;
 }
 
 export interface AgentConversation {

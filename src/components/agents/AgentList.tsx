@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { 
   Card, 
@@ -15,10 +14,8 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { AgentAvatar } from './AgentAvatar';
 import { useAgentService } from '@/hooks/use-agent-service';
-import { AgentConfiguration, AgentType, PlatformType } from '@/lib/agent-integration/types';
+import { AgentConfiguration, AgentType, PlatformType, AgentStatus } from '@/lib/agent-integration/types';
 import { toast } from 'sonner';
-
-export type AgentStatus = 'active' | 'inactive' | 'training';
 
 type AgentListProps = {
   onSelectAgent: (id: string) => void;
@@ -57,7 +54,7 @@ export const AgentList: React.FC<AgentListProps> = ({
     setAgents(transformedAgents);
   };
   
-  const toggleAgentStatus = async (agent: any) => {
+  const toggleAgentStatus = async (agent: AgentConfiguration) => {
     try {
       const newStatus = agent.status === 'active' ? 'inactive' : 'active';
       await updateAgentConfig(agent.type as AgentType, { 
