@@ -11,7 +11,9 @@ import {
   BookOpen,
   HelpCircle,
   Mic,
-  Globe
+  Globe,
+  Mail,
+  Ticket
 } from 'lucide-react';
 import { 
   Sidebar, 
@@ -71,6 +73,22 @@ export function DashboardSidebar() {
                   <Link to="/conversations" className={`flex items-center ${location.pathname === '/conversations' ? 'text-primary' : ''}`}>
                     <MessageSquare className="mr-2 h-4 w-4" />
                     <span>Conversations</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <Link to="/emails" className={`flex items-center ${location.pathname === '/emails' ? 'text-primary' : ''}`}>
+                    <Mail className="mr-2 h-4 w-4" />
+                    <span>Email Management</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <Link to="/tickets" className={`flex items-center ${location.pathname === '/tickets' ? 'text-primary' : ''}`}>
+                    <Ticket className="mr-2 h-4 w-4" />
+                    <span>Ticket System</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
