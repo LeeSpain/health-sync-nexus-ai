@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { EmailStatus, EmailPriority } from '@/lib/email-system/types';
 import { Badge } from '@/components/ui/badge';
@@ -7,7 +6,7 @@ import {
   CheckCircle2, 
   Clock, 
   AlertTriangle, 
-  InBox, 
+  Inbox, // Changed from InBox
   ArrowUpRight, 
   Pause,
   Flag,
@@ -39,7 +38,7 @@ export function EmailFilters({
   onClearFilters
 }: EmailFiltersProps) {
   const statusFilters: { value: EmailStatus; label: string; icon: React.ReactNode }[] = [
-    { value: 'unread', label: 'Unread', icon: <InBox className="h-4 w-4" /> },
+    { value: 'unread', label: 'Unread', icon: <Inbox className="h-4 w-4" /> },
     { value: 'assigned', label: 'Assigned', icon: <ArrowUpRight className="h-4 w-4" /> },
     { value: 'in-progress', label: 'In Progress', icon: <Clock className="h-4 w-4" /> },
     { value: 'waiting', label: 'Waiting', icon: <Pause className="h-4 w-4" /> },

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useEmailService } from '@/hooks/use-email-service';
 import { EmailThread, EmailStatus } from '@/lib/email-system/types';
@@ -11,7 +10,7 @@ import {
   AlertTriangle,
   CheckCircle2, 
   HelpCircle, 
-  InBox, 
+  Inbox,
   Pause 
 } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
@@ -56,7 +55,7 @@ export function EmailList({ agentId, onSelectThread, filter }: EmailListProps) {
   const getStatusIcon = (status: EmailStatus) => {
     switch (status) {
       case 'unread':
-        return <InBox className="h-4 w-4 text-blue-500" />;
+        return <Inbox className="h-4 w-4 text-blue-500" />;
       case 'assigned':
         return <ArrowUpRight className="h-4 w-4 text-yellow-500" />;
       case 'in-progress':
@@ -134,7 +133,7 @@ export function EmailList({ agentId, onSelectThread, filter }: EmailListProps) {
   if (threads.length === 0) {
     return (
       <div className="text-center py-8">
-        <InBox className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
+        <Inbox className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
         <h3 className="text-lg font-medium">No emails found</h3>
         <p className="text-sm text-muted-foreground">
           {agentId ? "No emails are currently assigned to this agent." : "There are no emails matching your filters."}
