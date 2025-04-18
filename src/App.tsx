@@ -14,6 +14,7 @@ import EscalationsPage from "./pages/EscalationsPage";
 import TrainingPage from "./pages/TrainingPage";
 import SettingsPage from "./pages/SettingsPage";
 import PlatformsPage from "./pages/PlatformsPage";
+import EmailsPage from "./pages/EmailsPage";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,7 @@ const App = () => (
           <Route path="/training" element={<TrainingPage />} />
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="/platforms" element={<PlatformsPage />} />
+          <Route path="/emails" element={<EmailsPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
