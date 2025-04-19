@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { DashboardLayout } from '@/components/layout/DashboardLayout';
 import { 
@@ -14,13 +13,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { AgentIntelligence } from '@/components/agents/AgentIntelligence';
 import { PlatformSimulator } from '@/components/platform-integration/PlatformSimulator';
 import { AgentType } from '@/lib/agent-integration/types';
-import { Brain, Database, Undo2, Zap, Bot, VoiceRecognition } from 'lucide-react';
+import { Brain, Database, Undo2, Zap, Bot, Mic } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useAgentService } from '@/hooks/use-agent-service';
 import { Separator } from '@/components/ui/separator';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
+import { Badge } from '@/components/ui/badge';
 
 const IntelligencePage = () => {
   const [selectedAgent, setSelectedAgent] = useState<AgentType>('anna');
