@@ -1,6 +1,6 @@
-
 import { AgentType } from '../agent-integration/types';
 import { Ticket, TicketStatus, TicketPriority, TicketMessage, TicketAnalytics } from './types';
+import NotificationService from '../notification/notification-service';
 
 export class TicketService {
   private static instance: TicketService;
@@ -30,7 +30,18 @@ export class TicketService {
       updatedAt: new Date().toISOString(),
       ...ticketData
     };
+    
     this.tickets.push(newTicket);
+    
+    // Add notification for new ticket
+    NotificationService.addNotification(
+      'New Ticket Created',
+      `Ticket ${newTicket.subject} has been created`,
+      ticketData.priority === 'critical' ? 'critical' : 'high',
+      'ticket',
+      `/tickets/${newTicket.id}`
+    );
+    
     return newTicket;
   }
 
@@ -43,6 +54,17 @@ export class TicketService {
       status,
       updatedAt: new Date().toISOString()
     };
+
+    // Add notification for status change
+    if (status === 'escalated') {
+      NotificationService.addNotification(
+        'Ticket Escalated',
+        `Ticket ${this.tickets[ticketIndex].subject} has been escalated`,
+        'high',
+        'escalation',
+        `/tickets/${ticketId}`
+      );
+    }
 
     return this.tickets[ticketIndex];
   }
