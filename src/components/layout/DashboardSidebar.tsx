@@ -13,7 +13,8 @@ import {
   Mic,
   Globe,
   Mail,
-  Ticket
+  Ticket,
+  Brain
 } from 'lucide-react';
 import { 
   Sidebar, 
@@ -97,6 +98,14 @@ export function DashboardSidebar() {
                   <Link to="/agents" className={`flex items-center ${location.pathname === '/agents' ? 'text-primary' : ''}`}>
                     <Users className="mr-2 h-4 w-4" />
                     <span>Agent Management</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <Link to="/intelligence" className={`flex items-center ${location.pathname === '/intelligence' ? 'text-primary' : ''}`}>
+                    <Brain className="mr-2 h-4 w-4" />
+                    <span>Agent Intelligence</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
