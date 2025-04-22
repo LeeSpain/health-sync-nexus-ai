@@ -230,6 +230,7 @@ export const PatientSummaryTool: MCPToolDefinition = {
         description: 'List of upcoming appointments',
         items: { 
           type: 'object',
+          description: 'Appointment details',
           properties: {
             date: { type: 'string' },
             provider: { type: 'string' },
@@ -282,6 +283,7 @@ export const VoiceTranscriptionTool: MCPToolDefinition = {
         description: 'Text segments with timestamps',
         items: { 
           type: 'object',
+          description: 'Segment details',
           properties: {
             text: { type: 'string' },
             start_time: { type: 'number' },
