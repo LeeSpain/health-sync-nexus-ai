@@ -5,12 +5,17 @@ import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader } from "@/compone
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { SidebarNavLinks } from "./SidebarNavLinks";
 import { SidebarFooterLinks } from "./SidebarFooterLinks";
+import { useLanguage } from '@/hooks/useLanguage';
+import { dashboardTranslations } from '@/locales/dashboard';
 
 export function DashboardSidebar() {
+  const { language } = useLanguage();
+  const t = dashboardTranslations[language];
+  
   return (
     <Sidebar>
       <SidebarHeader className="border-b text-lg font-semibold px-6 py-4">
-        <Link to="/">GHS Command</Link>
+        <Link to="/">GHS {t.sidebar?.main?.command || "Command"}</Link>
       </SidebarHeader>
       <ScrollArea className="flex-1">
         <SidebarContent>

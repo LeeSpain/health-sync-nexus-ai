@@ -4,10 +4,14 @@ import { Link, useLocation } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { HelpCircle, Cog, Code, DollarSign } from 'lucide-react';
+import { useLanguage } from '@/hooks/useLanguage';
+import { dashboardTranslations } from '@/locales/dashboard';
 
 export function SidebarFooterLinks() {
   const location = useLocation();
   const isActivePath = (path: string) => location.pathname === path;
+  const { language } = useLanguage();
+  const t = dashboardTranslations[language].sidebar.footer;
 
   return (
     <div className="grid gap-1">
@@ -20,7 +24,7 @@ export function SidebarFooterLinks() {
           )}
         >
           <HelpCircle className="h-4 w-4" />
-          <span>Help & Documentation</span>
+          <span>{t.help}</span>
         </Button>
       </Link>
       <Link to="/api-integration">
@@ -32,7 +36,7 @@ export function SidebarFooterLinks() {
           )}
         >
           <Code className="h-4 w-4" />
-          <span>API Integration</span>
+          <span>{t.api}</span>
         </Button>
       </Link>
       <Link to="/financials">
@@ -44,7 +48,7 @@ export function SidebarFooterLinks() {
           )}
         >
           <DollarSign className="h-4 w-4" />
-          <span>Financials</span>
+          <span>{t.financials}</span>
         </Button>
       </Link>
       <Link to="/settings">
@@ -56,7 +60,7 @@ export function SidebarFooterLinks() {
           )}
         >
           <Cog className="h-4 w-4" />
-          <span>Settings</span>
+          <span>{t.settings}</span>
         </Button>
       </Link>
     </div>

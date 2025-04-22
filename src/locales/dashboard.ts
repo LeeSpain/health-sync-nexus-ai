@@ -52,6 +52,27 @@ export const dashboardTranslations: Record<Lang, Record<string, any>> = {
       emails: "Emails",
       tickets: "Tickets"
     },
+    sidebar: {
+      main: {
+        dashboard: "Dashboard",
+        command: "Command Console",
+        conversations: "Conversations",
+        agents: "Agents",
+        emails: "Emails",
+        tickets: "Tickets",
+        intelligence: "Intelligence",
+        analytics: "Analytics",
+        escalations: "Escalations",
+        training: "Training",
+        platforms: "Platforms"
+      },
+      footer: {
+        help: "Help & Documentation",
+        api: "API Integration",
+        financials: "Financials",
+        settings: "Settings"
+      }
+    },
     changeLanguage: "Change language",
     english: "English",
     spanish: "Spanish",
@@ -107,6 +128,27 @@ export const dashboardTranslations: Record<Lang, Record<string, any>> = {
       emails: "Emails",
       tickets: "Tickets"
     },
+    sidebar: {
+      main: {
+        dashboard: "Tablero",
+        command: "Consola de Comandos",
+        conversations: "Conversaciones",
+        agents: "Agentes",
+        emails: "Correos",
+        tickets: "Tickets",
+        intelligence: "Inteligencia",
+        analytics: "Analítica",
+        escalations: "Escalaciones",
+        training: "Entrenamiento",
+        platforms: "Plataformas"
+      },
+      footer: {
+        help: "Ayuda y Documentación",
+        api: "Integración API",
+        financials: "Finanzas",
+        settings: "Configuración"
+      }
+    },
     changeLanguage: "Cambiar idioma",
     english: "Inglés",
     spanish: "Español",
@@ -161,6 +203,27 @@ export const dashboardTranslations: Record<Lang, Record<string, any>> = {
       dashboard: "Dashboard",
       emails: "E-mails",
       tickets: "Tickets"
+    },
+    sidebar: {
+      main: {
+        dashboard: "Dashboard",
+        command: "Commandoconsole",
+        conversations: "Gesprekken",
+        agents: "Agenten",
+        emails: "E-mails",
+        tickets: "Tickets",
+        intelligence: "Intelligentie",
+        analytics: "Analyses",
+        escalations: "Escalaties",
+        training: "Training",
+        platforms: "Platforms"
+      },
+      footer: {
+        help: "Hulp & Documentatie",
+        api: "API-integratie",
+        financials: "Financiën",
+        settings: "Instellingen"
+      }
     },
     changeLanguage: "Verander taal",
     english: "Engels",

@@ -16,10 +16,14 @@ import {
   FolderKanban,
   Network,
 } from 'lucide-react';
+import { useLanguage } from '@/hooks/useLanguage';
+import { dashboardTranslations } from '@/locales/dashboard';
 
 export function SidebarNavLinks() {
   const location = useLocation();
   const isActivePath = (path: string) => location.pathname === path;
+  const { language } = useLanguage();
+  const t = dashboardTranslations[language].sidebar.main;
 
   return (
     <nav className="grid gap-1 px-2 group-[[data-collapsed=true]]:justify-center">
@@ -32,7 +36,7 @@ export function SidebarNavLinks() {
           )}
         >
           <Home className="h-4 w-4" />
-          <span>Dashboard</span>
+          <span>{t.dashboard}</span>
         </Button>
       </Link>
       <Link to="/command">
@@ -44,7 +48,7 @@ export function SidebarNavLinks() {
           )}
         >
           <Command className="h-4 w-4" />
-          <span>Command Console</span>
+          <span>{t.command}</span>
         </Button>
       </Link>
       <Link to="/conversations">
@@ -56,7 +60,7 @@ export function SidebarNavLinks() {
           )}
         >
           <MessageSquare className="h-4 w-4" />
-          <span>Conversations</span>
+          <span>{t.conversations}</span>
         </Button>
       </Link>
       <Link to="/agents">
@@ -68,7 +72,7 @@ export function SidebarNavLinks() {
           )}
         >
           <Users2 className="h-4 w-4" />
-          <span>Agents</span>
+          <span>{t.agents}</span>
         </Button>
       </Link>
       <Link to="/emails">
@@ -80,7 +84,7 @@ export function SidebarNavLinks() {
           )}
         >
           <Mail className="h-4 w-4" />
-          <span>Emails</span>
+          <span>{t.emails}</span>
         </Button>
       </Link>
       <Link to="/tickets">
@@ -92,7 +96,7 @@ export function SidebarNavLinks() {
           )}
         >
           <Ticket className="h-4 w-4" />
-          <span>Tickets</span>
+          <span>{t.tickets}</span>
         </Button>
       </Link>
       <Link to="/intelligence">
@@ -104,7 +108,7 @@ export function SidebarNavLinks() {
           )}
         >
           <Brain className="h-4 w-4" />
-          <span>Intelligence</span>
+          <span>{t.intelligence}</span>
         </Button>
       </Link>
       <Link to="/analytics">
@@ -116,7 +120,7 @@ export function SidebarNavLinks() {
           )}
         >
           <BarChart4 className="h-4 w-4" />
-          <span>Analytics</span>
+          <span>{t.analytics}</span>
         </Button>
       </Link>
       <Link to="/escalations">
@@ -128,7 +132,7 @@ export function SidebarNavLinks() {
           )}
         >
           <Workflow className="h-4 w-4" />
-          <span>Escalations</span>
+          <span>{t.escalations}</span>
         </Button>
       </Link>
       <Link to="/training">
@@ -140,7 +144,7 @@ export function SidebarNavLinks() {
           )}
         >
           <FolderKanban className="h-4 w-4" />
-          <span>Training</span>
+          <span>{t.training}</span>
         </Button>
       </Link>
       <Link to="/platforms">
@@ -152,10 +156,9 @@ export function SidebarNavLinks() {
           )}
         >
           <Network className="h-4 w-4" />
-          <span>Platforms</span>
+          <span>{t.platforms}</span>
         </Button>
       </Link>
     </nav>
   );
 }
-
