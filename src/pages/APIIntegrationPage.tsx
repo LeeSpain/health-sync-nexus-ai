@@ -10,23 +10,28 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator
 } from "@/components/ui/breadcrumb";
+import { useLanguage } from '@/hooks/useLanguage';
+import { dashboardTranslations } from '@/locales/dashboard';
 
 const APIIntegrationPage = () => {
+  const { language } = useLanguage();
+  const t = dashboardTranslations[language];
+
   return (
     <DashboardLayout>
       <div className="space-y-6">
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
-              <BreadcrumbLink href="/">Dashboard</BreadcrumbLink>
+              <BreadcrumbLink href="/">{t.dashboard}</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink href="/help">Help & Documentation</BreadcrumbLink>
+              <BreadcrumbLink href="/help">{t.sidebar.footer.help}</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbPage>API Integration</BreadcrumbPage>
+              <BreadcrumbPage>{t.sidebar.footer.api}</BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>

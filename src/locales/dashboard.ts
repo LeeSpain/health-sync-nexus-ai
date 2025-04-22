@@ -77,6 +77,44 @@ export const dashboardTranslations: Record<Lang, Record<string, any>> = {
     english: "English",
     spanish: "Spanish",
     dutch: "Dutch",
+    pageContent: {
+      agents: {
+        title: "Agent Management",
+        advancedSettings: "Advanced Settings",
+        newAgent: "New Agent",
+        description: "Configure, train, and monitor all GHS agents in your network. Adjust agent settings and behaviors.",
+        allAgents: "All Agents",
+        active: "Active",
+        inactive: "Inactive",
+        inTraining: "In Training"
+      },
+      command: {
+        description: "Control your GHS Agent Command system with text or voice commands. Isabella will process your requests and coordinate with other agents."
+      },
+      conversations: {
+        description: "Review and analyze all agent conversations across platforms. Filter by agent, sentiment, or topic.",
+        analysisTitle: "Conversation Analysis",
+        analysisDescription: "This page will display all agent conversations with filtering capabilities, sentiment analysis, and escalation tracking."
+      },
+      tickets: {
+        loadTickets: "Load Tickets",
+        createTicket: "Create Ticket",
+        noTicketsFound: "No tickets found. Click 'Create Ticket' to get started.",
+        priority: {
+          critical: "Critical",
+          high: "High",
+          medium: "Medium",
+          low: "Low"
+        },
+        status: {
+          open: "Open",
+          inProgress: "In Progress",
+          resolved: "Resolved",
+          closed: "Closed"
+        },
+        created: "Created"
+      }
+    }
   },
   es: {
     dashboard: "Tablero",
@@ -153,6 +191,44 @@ export const dashboardTranslations: Record<Lang, Record<string, any>> = {
     english: "Inglés",
     spanish: "Español",
     dutch: "Holandés",
+    pageContent: {
+      agents: {
+        title: "Gestión de Agentes",
+        advancedSettings: "Configuración Avanzada",
+        newAgent: "Nuevo Agente",
+        description: "Configure, entrene y supervise todos los agentes GHS en su red. Ajuste la configuración y los comportamientos de los agentes.",
+        allAgents: "Todos los Agentes",
+        active: "Activos",
+        inactive: "Inactivos",
+        inTraining: "En Entrenamiento"
+      },
+      command: {
+        description: "Controle su sistema GHS Agent Command con comandos de texto o voz. Isabella procesará sus solicitudes y coordinará con otros agentes."
+      },
+      conversations: {
+        description: "Revise y analice todas las conversaciones de agentes en todas las plataformas. Filtre por agente, sentimiento o tema.",
+        analysisTitle: "Análisis de Conversación",
+        analysisDescription: "Esta página mostrará todas las conversaciones de agentes con capacidades de filtrado, análisis de sentimiento y seguimiento de escaladas."
+      },
+      tickets: {
+        loadTickets: "Cargar Tickets",
+        createTicket: "Crear Ticket",
+        noTicketsFound: "No se encontraron tickets. Haga clic en 'Crear Ticket' para comenzar.",
+        priority: {
+          critical: "Crítico",
+          high: "Alto",
+          medium: "Medio",
+          low: "Bajo"
+        },
+        status: {
+          open: "Abierto",
+          inProgress: "En Progreso",
+          resolved: "Resuelto",
+          closed: "Cerrado"
+        },
+        created: "Creado"
+      }
+    }
   },
   nl: {
     dashboard: "Dashboard",
@@ -229,5 +305,43 @@ export const dashboardTranslations: Record<Lang, Record<string, any>> = {
     english: "Engels",
     spanish: "Spaans",
     dutch: "Nederlands",
+    pageContent: {
+      agents: {
+        title: "Agent Beheer",
+        advancedSettings: "Geavanceerde Instellingen",
+        newAgent: "Nieuwe Agent",
+        description: "Configureer, train en monitor alle GHS-agenten in uw netwerk. Pas agentinstellingen en -gedrag aan.",
+        allAgents: "Alle Agenten",
+        active: "Actief",
+        inactive: "Inactief",
+        inTraining: "In Training"
+      },
+      command: {
+        description: "Beheer uw GHS Agent Command-systeem met tekst- of spraakopdrachten. Isabella verwerkt uw verzoeken en coördineert met andere agenten."
+      },
+      conversations: {
+        description: "Bekijk en analyseer alle agentgesprekken op alle platforms. Filter op agent, sentiment of onderwerp.",
+        analysisTitle: "Gespreksanalyse",
+        analysisDescription: "Deze pagina toont alle agentgesprekken met filtermogelijkheden, sentimentanalyse en escalatietracking."
+      },
+      tickets: {
+        loadTickets: "Tickets Laden",
+        createTicket: "Ticket Aanmaken",
+        noTicketsFound: "Geen tickets gevonden. Klik op 'Ticket Aanmaken' om te beginnen.",
+        priority: {
+          critical: "Kritiek",
+          high: "Hoog",
+          medium: "Gemiddeld",
+          low: "Laag"
+        },
+        status: {
+          open: "Open",
+          inProgress: "In Behandeling",
+          resolved: "Opgelost",
+          closed: "Gesloten"
+        },
+        created: "Aangemaakt"
+      }
+    }
   }
 };
