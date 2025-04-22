@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from "@/lib/utils";
@@ -8,7 +9,7 @@ import {
   BarChart4, 
   Command, 
   Cog, 
-  Stairs,  // Replace escalator with Stairs 
+  Workflow,  // Replace Stairs with Workflow 
   FolderKanban,
   HelpCircle,
   Home, 
@@ -136,7 +137,7 @@ export function DashboardSidebar() {
                   isActivePath('/escalations') && "bg-secondary/50"
                 )}
               >
-                <Stairs className="h-4 w-4" /> {/* Use Stairs instead of escalator */}
+                <Workflow className="h-4 w-4" /> {/* Use Workflow instead of Stairs */}
                 <span>Escalations</span>
               </Button>
             </Link>
