@@ -1,4 +1,3 @@
-
 /**
  * Model Context Protocol (MCP) Types
  * Standardized definitions for the MCP protocol implementation
@@ -33,6 +32,8 @@ export interface MCPPropertySchema {
   enum?: string[];
   format?: string;
   items?: MCPPropertySchema; // For arrays
+  properties?: Record<string, MCPPropertySchema>; // For nested objects
+  required?: string[]; // For nested objects
 }
 
 // Tool Requests and Responses
