@@ -2,6 +2,7 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { TrendingUp, AlertCircle, Sparkles, Lightbulb } from 'lucide-react';
+import { MCPStatusCard } from './MCP/MCPStatusCard';
 
 export function EmergingPatterns() {
   return (
@@ -46,6 +47,8 @@ export function EmergingPatterns() {
               </p>
             </div>
           </div>
+          
+          <MCPStatusCard />
         </div>
       </CardContent>
     </Card>

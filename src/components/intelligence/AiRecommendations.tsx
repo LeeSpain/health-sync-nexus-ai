@@ -2,7 +2,7 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Sparkles } from 'lucide-react';
+import { Sparkles, Zap, Brain } from 'lucide-react';
 
 export function AiRecommendations() {
   return (
@@ -45,6 +45,23 @@ export function AiRecommendations() {
             </p>
             <div className="mt-2">
               <Button variant="outline" size="sm" className="text-xs h-7">Add Training Data</Button>
+            </div>
+          </div>
+          
+          <div className="p-3 rounded-lg border bg-indigo-50">
+            <div className="flex items-center gap-2">
+              <Brain className="h-5 w-5 text-indigo-500" />
+              <h4 className="font-medium text-sm text-indigo-900">MCP Integration Benefits</h4>
+            </div>
+            <p className="text-xs text-indigo-700 mt-1">
+              The new MCP architecture allows for easier tool extensibility and model interoperability.
+              Tools can now be added without modifying agent code.
+            </p>
+            <div className="mt-2">
+              <Button variant="outline" size="sm" className="text-xs h-7 border-indigo-300 text-indigo-700 hover:text-indigo-800 hover:bg-indigo-100">
+                <Zap className="mr-1 h-3 w-3" />
+                View MCP Tools
+              </Button>
             </div>
           </div>
         </div>

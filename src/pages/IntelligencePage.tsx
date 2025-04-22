@@ -21,6 +21,7 @@ import { ConversationAnalytics } from '@/components/intelligence/ConversationAna
 import { ConversationQuality } from '@/components/intelligence/ConversationQuality';
 import { SystemHealth } from '@/components/intelligence/SystemHealth';
 import { AiRecommendations } from '@/components/intelligence/AiRecommendations';
+import { MCPToolsPanel } from '@/components/intelligence/MCP/MCPToolsPanel';
 
 const IntelligencePage = () => {
   const [activeTab, setActiveTab] = useState("insights");
@@ -54,10 +55,11 @@ const IntelligencePage = () => {
         </div>
         
         <Tabs defaultValue="insights" className="w-full" onValueChange={setActiveTab}>
-          <TabsList className="grid w-full grid-cols-3 mb-4">
+          <TabsList className="grid w-full grid-cols-4 mb-4">
             <TabsTrigger value="insights">AI Insights</TabsTrigger>
             <TabsTrigger value="optimization">System Optimization</TabsTrigger>
             <TabsTrigger value="analytics">Advanced Analytics</TabsTrigger>
+            <TabsTrigger value="mcp">MCP Tools</TabsTrigger>
           </TabsList>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -76,12 +78,31 @@ const IntelligencePage = () => {
                 <ConversationAnalytics />
                 <ConversationQuality />
               </TabsContent>
+              
+              <TabsContent value="mcp" className="space-y-4 mt-0">
+                <MCPToolsPanel agentId="isabella" />
+              </TabsContent>
             </div>
             
             <div className="space-y-6">
               <VoiceControl agentId="current-agent-id" />
               <AiRecommendations />
               <SystemHealth />
+              
+              {activeTab === "mcp" && (
+                <Card className="bg-amber-50 border-amber-200 p-4">
+                  <div className="flex items-start gap-3">
+                    <AlertTriangle className="h-5 w-5 text-amber-500 mt-0.5" />
+                    <div>
+                      <h4 className="font-medium text-sm text-amber-800">MCP Implementation Notes</h4>
+                      <p className="text-xs text-amber-700 mt-1">
+                        This is a demonstration of the MCP architecture. In a production environment, you would connect 
+                        these tools to real API endpoints instead of using the simulated responses.
+                      </p>
+                    </div>
+                  </div>
+                </Card>
+              )}
             </div>
           </div>
         </Tabs>
