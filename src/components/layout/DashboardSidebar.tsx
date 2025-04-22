@@ -8,7 +8,7 @@ import {
   BarChart4, 
   Command, 
   Cog, 
-  Escalator, 
+  escalator, // Updated import 
   FolderKanban,
   HelpCircle,
   Home, 
@@ -136,7 +136,7 @@ export function DashboardSidebar() {
                   isActivePath('/escalations') && "bg-secondary/50"
                 )}
               >
-                <Escalator className="h-4 w-4" />
+                <escalator className="h-4 w-4" />
                 <span>Escalations</span>
               </Button>
             </Link>
