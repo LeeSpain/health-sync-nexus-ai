@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Bell, Settings, User, Search } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -11,8 +10,14 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useLanguage } from "@/hooks/useLanguage";
+import { dashboardTranslations } from "@/locales/dashboard";
+import { Languages } from "lucide-react";
 
 export function DashboardHeader() {
+  const { language, setLanguage } = useLanguage();
+  const t = dashboardTranslations[language];
+
   return (
     <header className="w-full border-b bg-card/80 backdrop-blur-sm sticky top-0 z-30">
       <div className="container flex h-16 items-center justify-between py-4">
@@ -76,6 +81,20 @@ export function DashboardHeader() {
               <DropdownMenuItem>Log out</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
+        
+          <div className="flex items-center">
+            <Languages className="h-5 w-5 mr-1" />
+            <select
+              className="bg-background border rounded text-xs py-1 px-2 focus-visible:ring-amber-400/40"
+              value={language}
+              aria-label={t.changeLanguage}
+              onChange={e => setLanguage(e.target.value as "en" | "es" | "nl")}
+            >
+              <option value="en">{t.english}</option>
+              <option value="es">{t.spanish}</option>
+              <option value="nl">{t.dutch}</option>
+            </select>
+          </div>
         </div>
       </div>
     </header>
