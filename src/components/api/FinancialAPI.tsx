@@ -93,7 +93,7 @@ export function FinancialAPI() {
                 <TableCell>{transaction.date}</TableCell>
                 <TableCell>{transaction.platform}</TableCell>
                 <TableCell>
-                  <Badge variant={transaction.type === 'income' ? 'success' : 'destructive'}>
+                  <Badge variant={transaction.type === 'income' ? 'default' : 'destructive'}>
                     {transaction.type}
                   </Badge>
                 </TableCell>
