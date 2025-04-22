@@ -49,7 +49,7 @@ const monthlyTrend = [
 
 // Euro formatting helper
 const euro = (value: number) =>
-  "€ " + value.toLocaleString('de-DE', { minimumFractionDigits: 0 });
+  "€ " + value.toLocaleString('de-DE', { minimumFractionDigits: 2 });
 
 export function FinancialOverview() {
   // Per-platform breakdown with subtotals for each
@@ -131,12 +131,12 @@ export function FinancialOverview() {
                 <CardDescription>
                   <span className="block font-medium">
                     Revenue: <span className={`font-semibold ${platform.highlight ? 'text-red-600' : 'text-green-600'}`}>
-                      €{platform.revenue.toLocaleString('de-DE', { minimumFractionDigits: 2 })}
+                      {euro(platform.revenue)}
                     </span>
                   </span>
                   <span className="block font-medium">
                     Expenses: <span className={`font-semibold ${platform.highlight ? 'text-red-700' : 'text-red-500'}`}>
-                      €{platform.expenses.toLocaleString('de-DE', { minimumFractionDigits: 2 })}
+                      {euro(platform.expenses)}
                     </span>
                   </span>
                 </CardDescription>
