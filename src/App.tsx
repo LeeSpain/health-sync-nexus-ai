@@ -18,6 +18,7 @@ import EmailsPage from "./pages/EmailsPage";
 import TicketsPage from "./pages/TicketsPage";
 import IntelligencePage from "./pages/IntelligencePage";
 import HelpPage from "./pages/HelpPage";
+import APIIntegrationPage from "./pages/APIIntegrationPage";
 
 const queryClient = new QueryClient();
 
@@ -41,6 +42,7 @@ const App = () => (
           <Route path="/tickets" element={<TicketsPage />} />
           <Route path="/intelligence" element={<IntelligencePage />} />
           <Route path="/help" element={<HelpPage />} />
+          <Route path="/api-integration" element={<APIIntegrationPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
