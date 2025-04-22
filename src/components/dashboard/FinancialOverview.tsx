@@ -7,9 +7,6 @@ import {
   Bar, 
   LineChart, 
   Line, 
-  PieChart, 
-  Pie, 
-  Cell, 
   ResponsiveContainer, 
   XAxis, 
   YAxis, 
@@ -21,49 +18,40 @@ import { ArrowUpRight, ArrowDownRight, DollarSign } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { ChartContainer } from "@/components/ui/chart";
 
+// Platform-wise sample data
+const platformRevenue = [
+  { name: 'iHealth-Sync', revenue: 45000, expenses: 15000, profit: 30000 },
+  { name: 'Nurse-Sync', revenue: 35000, expenses: 12000, profit: 23000 },
+  { name: 'Medic-Sync', revenue: 28000, expenses: 9000, profit: 19000 },
+  { name: 'Command', revenue: 18000, expenses: 7000, profit: 11000 },
+];
+
+// Totals
+const totalRevenue = platformRevenue.reduce((sum, item) => sum + item.revenue, 0);
+const totalExpenses = platformRevenue.reduce((sum, item) => sum + item.expenses, 0);
+const totalProfit = platformRevenue.reduce((sum, item) => sum + item.profit, 0);
+
+const revenueChange = 8.5;
+const expenseChange = 4.2;
+const profitChange = 12.3;
+
+const monthlyTrend = [
+  { name: 'Jan', income: 75000, expenses: 42000 },
+  { name: 'Feb', income: 82000, expenses: 45000 },
+  { name: 'Mar', income: 88000, expenses: 46000 },
+  { name: 'Apr', income: 96000, expenses: 48000 },
+];
+
 export function FinancialOverview() {
-  // Sample data for the financial overview
-  const platformRevenue = [
-    { name: 'iHealth-Sync', revenue: 45000, expenses: 15000, profit: 30000 },
-    { name: 'Nurse-Sync', revenue: 35000, expenses: 12000, profit: 23000 },
-    { name: 'Medic-Sync', revenue: 28000, expenses: 9000, profit: 19000 },
-    { name: 'Command', revenue: 18000, expenses: 7000, profit: 11000 },
-  ];
-
-  const monthlyTrend = [
-    { name: 'Jan', income: 75000, expenses: 42000 },
-    { name: 'Feb', income: 82000, expenses: 45000 },
-    { name: 'Mar', income: 88000, expenses: 46000 },
-    { name: 'Apr', income: 96000, expenses: 48000 },
-  ];
-
-  const incomeDistribution = [
-    { name: 'Subscriptions', value: 55 },
-    { name: 'Service Fees', value: 25 },
-    { name: 'Add-ons', value: 15 },
-    { name: 'Other', value: 5 },
-  ];
-
-  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
-
-  const totalRevenue = platformRevenue.reduce((sum, item) => sum + item.revenue, 0);
-  const totalExpenses = platformRevenue.reduce((sum, item) => sum + item.expenses, 0);
-  const totalProfit = platformRevenue.reduce((sum, item) => sum + item.profit, 0);
-  
-  // Calculate the percentage change (fictional for this example)
-  const revenueChange = 8.5;
-  const expenseChange = 4.2;
-  const profitChange = 12.3;
-
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <div className="flex items-center justify-between">
         <h2 className="text-xl font-semibold">Financial Overview</h2>
         <Button variant="outline" size="sm">
           View All Transactions
         </Button>
       </div>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <Card>
           <CardHeader className="pb-2">
@@ -113,6 +101,25 @@ export function FinancialOverview() {
           </CardContent>
         </Card>
       </div>
+
+      {/* Per-Platform breakdown grid */}
+      <div className="space-y-2">
+        <h3 className="text-lg font-semibold">Platform Financial Breakdown</h3>
+        <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+          {platformRevenue.map(platform => (
+            <Card key={platform.name} className="border-2 border-primary/20 hover:scale-105 transition-transform duration-200 hover:shadow-lg">
+              <CardHeader>
+                <CardTitle className="text-base text-primary">{platform.name}</CardTitle>
+                <CardDescription>
+                  <span className="block">Revenue: <span className="text-green-600 font-semibold">${platform.revenue.toLocaleString()}</span></span>
+                  <span className="block">Expenses: <span className="text-red-500 font-semibold">${platform.expenses.toLocaleString()}</span></span>
+                  <span className="block">Profit: <span className={`font-semibold ${platform.profit >= 0 ? 'text-green-700' : 'text-red-700'}`}>${platform.profit.toLocaleString()}</span></span>
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          ))}
+        </div>
+      </div>
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card>
@@ -137,7 +144,7 @@ export function FinancialOverview() {
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
                     <YAxis />
-                    <Tooltip formatter={(value) => `$${value.toLocaleString()}`} />
+                    <Tooltip formatter={(value) => `$${Number(value).toLocaleString()}`} />
                     <Legend />
                     <Bar dataKey="revenue" name="Revenue" fill="#0088FE" />
                     <Bar dataKey="expenses" name="Expenses" fill="#FF8042" />
@@ -170,7 +177,7 @@ export function FinancialOverview() {
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
                     <YAxis />
-                    <Tooltip formatter={(value) => `$${value.toLocaleString()}`} />
+                    <Tooltip formatter={(value) => `$${Number(value).toLocaleString()}`} />
                     <Legend />
                     <Line 
                       type="monotone" 

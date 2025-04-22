@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, TableFooter } from "@/components/ui/table";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
@@ -65,6 +65,11 @@ export function FinancialAPI() {
     }
   ];
 
+  // Calculate totals
+  const totalIncome = transactions.reduce((acc, t) => t.type === 'income' ? acc + t.amount : acc, 0);
+  const totalExpense = transactions.reduce((acc, t) => t.type === 'expense' ? acc + t.amount : acc, 0);
+  const totalNet = totalIncome - totalExpense;
+
   return (
     <Card>
       <CardHeader>
@@ -94,7 +99,7 @@ export function FinancialAPI() {
                 <TableCell>{transaction.platform}</TableCell>
                 <TableCell>
                   <Badge variant={transaction.type === 'income' ? 'default' : 'destructive'}>
-                    {transaction.type}
+                    {transaction.type.charAt(0).toUpperCase() + transaction.type.slice(1)}
                   </Badge>
                 </TableCell>
                 <TableCell>{transaction.category}</TableCell>
@@ -107,12 +112,35 @@ export function FinancialAPI() {
                     transaction.status === 'completed' ? 'outline' : 
                     transaction.status === 'pending' ? 'secondary' : 'destructive'
                   }>
-                    {transaction.status}
+                    {transaction.status.charAt(0).toUpperCase() + transaction.status.slice(1)}
                   </Badge>
                 </TableCell>
               </TableRow>
             ))}
           </TableBody>
+          <TableFooter>
+            <TableRow>
+              <TableCell colSpan={5} className="font-bold text-right">Total Income</TableCell>
+              <TableCell className="text-green-700 font-semibold">
+                +USD {totalIncome.toFixed(2)}
+              </TableCell>
+              <TableCell />
+            </TableRow>
+            <TableRow>
+              <TableCell colSpan={5} className="font-bold text-right">Total Expenses</TableCell>
+              <TableCell className="text-red-700 font-semibold">
+                -USD {totalExpense.toFixed(2)}
+              </TableCell>
+              <TableCell />
+            </TableRow>
+            <TableRow>
+              <TableCell colSpan={5} className="font-bold text-right">Net Total</TableCell>
+              <TableCell className={`font-bold ${totalNet >= 0 ? 'text-green-800' : 'text-red-800'}`}>
+                {totalNet >= 0 ? "+" : "-"}USD {Math.abs(totalNet).toFixed(2)}
+              </TableCell>
+              <TableCell />
+            </TableRow>
+          </TableFooter>
         </Table>
       </CardContent>
     </Card>
