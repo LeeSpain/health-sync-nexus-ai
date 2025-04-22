@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from "@/lib/utils";
@@ -9,7 +8,7 @@ import {
   BarChart4, 
   Command, 
   Cog, 
-  Escalator,  // Changed back to PascalCase 
+  escalator,  // Corrected to lowercase 
   FolderKanban,
   HelpCircle,
   Home, 
@@ -137,7 +136,7 @@ export function DashboardSidebar() {
                   isActivePath('/escalations') && "bg-secondary/50"
                 )}
               >
-                <Escalator className="h-4 w-4" />
+                <escalator className="h-4 w-4" />
                 <span>Escalations</span>
               </Button>
             </Link>
