@@ -1,3 +1,4 @@
+
 import { MCPToolDefinition } from './types';
 
 /**
@@ -32,7 +33,7 @@ export const TicketTool: MCPToolDefinition = {
     type: 'object',
     properties: {
       ticket_id: { type: 'string', description: 'ID of the created ticket' },
-      status: { type: 'string', description: 'Initial status of the ticket' },
+      status: { type: 'string', description: 'Status of the ticket' },
       created_at: { type: 'string', description: 'Timestamp when the ticket was created' },
       assigned_to: { type: 'string', description: 'Agent the ticket is assigned to' }
     }
