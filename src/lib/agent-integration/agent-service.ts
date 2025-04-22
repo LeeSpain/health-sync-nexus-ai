@@ -1,4 +1,14 @@
-import { AgentCommand, AgentConfiguration, AgentSyncEvent, AgentType, PlatformType } from './types';
+
+import { 
+  AgentCommand, 
+  AgentConfiguration, 
+  AgentSyncEvent, 
+  AgentType, 
+  PlatformType,
+  AgentMetricsSyncEvent,
+  AgentConversationSyncEvent,
+  AgentEscalationSyncEvent
+} from './types';
 
 // This would be replaced with actual API calls in a real implementation
 const mockApiDelay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
@@ -142,7 +152,7 @@ export class AgentService {
         console.log(`[SYNC] Escalation:`, event);
         break;
       default:
-        throw new Error(`syncAgentMetrics received unknown event type: ${event.type}`);
+        throw new Error(`syncAgentMetrics received unknown event type: ${(event as any).type}`);
     }
 
     await mockApiDelay(700);

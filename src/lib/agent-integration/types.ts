@@ -1,3 +1,4 @@
+
 export type AgentType = 'anna' | 'emma' | 'julia' | 'isabella';
 export type PlatformType = 'ihealth-sync' | 'nurse-sync' | 'medic-sync' | 'command';
 export type AgentStatus = 'active' | 'inactive' | 'training';
@@ -64,12 +65,14 @@ export interface AgentCommand {
   timestamp: string;
 }
 
+// Base interface for all sync events
 export interface AgentSyncEventBase {
   agentId: string;
   platform: PlatformType;
   timestamp: string;
 }
 
+// Specific sync event types
 export interface AgentMetricsSyncEvent extends AgentSyncEventBase {
   type: 'metrics';
   data: AgentPerformanceMetrics & {
@@ -95,12 +98,5 @@ export interface AgentEscalationSyncEvent extends AgentSyncEventBase {
   };
 }
 
+// Union type that can be any of the specific event types
 export type AgentSyncEvent = AgentMetricsSyncEvent | AgentConversationSyncEvent | AgentEscalationSyncEvent;
-
-export interface AgentCommand {
-  type: 'update_personality' | 'update_knowledge' | 'update_escalation_rules' | 'activate' | 'deactivate';
-  targetAgent: AgentType;
-  payload: any;
-  issuedBy: 'isabella';
-  timestamp: string;
-}
