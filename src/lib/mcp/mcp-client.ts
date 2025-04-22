@@ -13,11 +13,11 @@ import MCPHostService from './mcp-host';
  */
 export class MCPClientService implements MCPClient {
   private static instance: MCPClientService;
-  private host: MCPHostService;
+  private host: typeof MCPHostService;
   private agentId: string;
   
   private constructor(agentId: string) {
-    this.host = MCPHostService.getInstance();
+    this.host = MCPHostService;
     this.agentId = agentId;
   }
   

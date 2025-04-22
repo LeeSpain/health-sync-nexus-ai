@@ -11,7 +11,8 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { Brain } from 'lucide-react';
+import { Card } from "@/components/ui/card";
+import { Brain, AlertTriangle } from 'lucide-react';
 import { VoiceControl } from '@/components/voice/VoiceControl';
 import { ConversationIntelligence } from '@/components/intelligence/ConversationIntelligence';
 import { EmergingPatterns } from '@/components/intelligence/EmergingPatterns';

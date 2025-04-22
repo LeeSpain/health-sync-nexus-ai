@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { 
   MCPToolRequest, 
@@ -25,7 +24,7 @@ export function useMCP(agentId: AgentType = 'isabella') {
   
   // Get MCP client for the specified agent
   const mcpClient = createMCPClient(agentId);
-  const mcpHost = MCPHostService.getInstance();
+  const mcpHost = MCPHostService;
   
   /**
    * Initialize the MCP system by registering all tools

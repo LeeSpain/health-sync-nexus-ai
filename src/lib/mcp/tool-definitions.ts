@@ -1,4 +1,3 @@
-
 import { MCPToolDefinition } from './types';
 
 /**

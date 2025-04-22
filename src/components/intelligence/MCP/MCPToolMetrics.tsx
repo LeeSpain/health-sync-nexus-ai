@@ -89,10 +89,10 @@ export function MCPToolMetrics({ toolName, analytics }: MCPToolMetricsProps) {
             
             <h4 className="text-xs font-medium mb-1">Usage by Agent</h4>
             <div className="space-y-1">
-              {Object.entries(usageByAgent).map(([agent, count]) => (
+              {Object.entries(usageByAgent || {}).map(([agent, count]) => (
                 <div key={agent} className="flex justify-between text-xs">
                   <span>{agent}</span>
-                  <span>{count} calls</span>
+                  <span>{String(count)} calls</span>
                 </div>
               ))}
             </div>
