@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { CopyIcon, CheckIcon, ArrowDownToLine } from "lucide-react";
 import { toast } from "sonner";
+import { FinancialAPIDocumentation } from "./FinancialAPIDocumentation";
 
 interface EndpointExample {
   request: string;
@@ -465,6 +466,9 @@ export function APIDocumentation() {
           </div>
         </CardContent>
       </Card>
+      
+      {/* Add Financial API Documentation */}
+      <FinancialAPIDocumentation />
       
       <Tabs defaultValue={apiSections[0].title} className="w-full">
         <TabsList className="mb-4">

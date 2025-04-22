@@ -5,6 +5,7 @@ import { DashboardLayout } from '@/components/layout/DashboardLayout';
 import { AgentCard } from '@/components/dashboard/AgentCard';
 import { CommandConsole } from '@/components/dashboard/CommandConsole';
 import { SystemStats } from '@/components/dashboard/SystemStats';
+import { FinancialOverview } from '@/components/dashboard/FinancialOverview';
 import { useEmailService } from '@/hooks/use-email-service';
 import { useTicketService } from '@/hooks/use-ticket-service';
 import { EmailAnalytics } from '@/lib/email-system/types';
@@ -126,6 +127,9 @@ const Index = () => {
             </div>
           </div>
         </div>
+        
+        {/* Add Financial Overview Section */}
+        <FinancialOverview />
         
         {/* Communication Systems Overview */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">

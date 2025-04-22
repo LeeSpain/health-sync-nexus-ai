@@ -3,7 +3,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { HelpCircle, Cog, Code } from 'lucide-react';
+import { HelpCircle, Cog, Code, DollarSign } from 'lucide-react';
 
 export function SidebarFooterLinks() {
   const location = useLocation();
@@ -33,6 +33,18 @@ export function SidebarFooterLinks() {
         >
           <Code className="h-4 w-4" />
           <span>API Integration</span>
+        </Button>
+      </Link>
+      <Link to="/financials">
+        <Button
+          variant={isActivePath('/financials') ? "secondary" : "ghost"}
+          className={cn(
+            "w-full justify-start gap-2",
+            isActivePath('/financials') && "bg-secondary/50"
+          )}
+        >
+          <DollarSign className="h-4 w-4" />
+          <span>Financials</span>
         </Button>
       </Link>
       <Link to="/settings">
