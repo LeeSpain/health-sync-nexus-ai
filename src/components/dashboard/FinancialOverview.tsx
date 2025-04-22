@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -14,7 +13,7 @@ import {
   Tooltip, 
   Legend 
 } from 'recharts';
-import { ArrowUpRight, ArrowDownRight, DollarSign } from 'lucide-react';
+import { ArrowUpRight, ArrowDownRight, DollarSign, Euro } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { ChartContainer } from "@/components/ui/chart";
 
@@ -23,7 +22,13 @@ const platformRevenue = [
   { name: 'iHealth-Sync', revenue: 42000, expenses: 16500, profit: 25500 },
   { name: 'Nurse-Sync', revenue: 34000, expenses: 9600, profit: 24400 },
   { name: 'Medic-Sync', revenue: 26500, expenses: 8700, profit: 17800 },
-  { name: 'Command', revenue: 20000, expenses: 5900, profit: 14100 },
+  { 
+    name: 'Command', 
+    revenue: 20000, 
+    expenses: 5900, 
+    profit: 14100,
+    highlight: true  // New property to emphasize this platform
+  },
 ];
 
 // Calculate totals (euros)
@@ -112,13 +117,28 @@ export function FinancialOverview() {
         <h3 className="text-lg font-semibold">Platform Breakdown in Euros</h3>
         <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
           {platformRevenue.map(platform => (
-            <Card key={platform.name} className="border-2 border-primary/20 hover:scale-105 transition-transform duration-200 hover:shadow-lg">
+            <Card 
+              key={platform.name} 
+              className={`border-2 ${platform.highlight 
+                ? 'border-red-500/50 bg-red-50/20 hover:bg-red-100/30' 
+                : 'border-primary/20'} 
+                hover:scale-105 transition-transform duration-200 hover:shadow-lg`}
+            >
               <CardHeader>
-                <CardTitle className="text-base text-primary">{platform.name}</CardTitle>
+                <CardTitle className={`text-base ${platform.highlight ? 'text-red-700' : 'text-primary'}`}>
+                  {platform.name}
+                </CardTitle>
                 <CardDescription>
-                  <span className="block font-medium">Revenue: <span className="text-green-600 font-semibold">{euro(platform.revenue)}</span></span>
-                  <span className="block font-medium">Expenses: <span className="text-red-500 font-semibold">{euro(platform.expenses)}</span></span>
-                  <span className="block font-medium">Profit: <span className={`font-semibold ${platform.profit >= 0 ? 'text-green-700' : 'text-red-700'}`}>{euro(platform.profit)}</span></span>
+                  <span className="block font-medium">
+                    Revenue: <span className={`font-semibold ${platform.highlight ? 'text-red-600' : 'text-green-600'}`}>
+                      €{platform.revenue.toLocaleString('de-DE', { minimumFractionDigits: 2 })}
+                    </span>
+                  </span>
+                  <span className="block font-medium">
+                    Expenses: <span className={`font-semibold ${platform.highlight ? 'text-red-700' : 'text-red-500'}`}>
+                      €{platform.expenses.toLocaleString('de-DE', { minimumFractionDigits: 2 })}
+                    </span>
+                  </span>
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -230,4 +250,3 @@ export function FinancialOverview() {
     </div>
   );
 }
-
