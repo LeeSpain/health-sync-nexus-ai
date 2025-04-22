@@ -17,13 +17,13 @@ interface FinancialTransaction {
 }
 
 export function FinancialAPI() {
-  // Sample financial data for demonstration
+  // Sample financial data for demonstration, now in euros (EUR)
   const transactions: FinancialTransaction[] = [
     {
       id: "tr_1234",
       date: "2025-04-20",
       amount: 2500.00,
-      currency: "USD",
+      currency: "EUR",
       type: "income",
       platform: "iHealth-Sync",
       category: "Subscription",
@@ -34,7 +34,7 @@ export function FinancialAPI() {
       id: "tr_1235",
       date: "2025-04-19",
       amount: 1800.00,
-      currency: "USD",
+      currency: "EUR",
       type: "income",
       platform: "Nurse-Sync",
       category: "Service Fee",
@@ -45,7 +45,7 @@ export function FinancialAPI() {
       id: "tr_1236",
       date: "2025-04-18",
       amount: 750.00,
-      currency: "USD",
+      currency: "EUR",
       type: "expense",
       platform: "Medic-Sync",
       category: "API Usage",
@@ -56,7 +56,7 @@ export function FinancialAPI() {
       id: "tr_1237",
       date: "2025-04-17",
       amount: 1200.00,
-      currency: "USD",
+      currency: "EUR",
       type: "income",
       platform: "iHealth-Sync",
       category: "Add-on",
@@ -65,17 +65,21 @@ export function FinancialAPI() {
     }
   ];
 
-  // Calculate totals
+  // Calculate totals in euros
   const totalIncome = transactions.reduce((acc, t) => t.type === 'income' ? acc + t.amount : acc, 0);
   const totalExpense = transactions.reduce((acc, t) => t.type === 'expense' ? acc + t.amount : acc, 0);
   const totalNet = totalIncome - totalExpense;
+
+  // Helper to format euro currency with symbol
+  const euro = (value: number) =>
+    "€ " + value.toLocaleString('de-DE', { minimumFractionDigits: 2 });
 
   return (
     <Card>
       <CardHeader>
         <CardTitle>Financial Transactions API</CardTitle>
         <CardDescription>
-          Track and manage financial data across all GHS platforms
+          Monitor and track all incoming and outgoing funds for every platform (all figures in euros)
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -105,7 +109,7 @@ export function FinancialAPI() {
                 <TableCell>{transaction.category}</TableCell>
                 <TableCell className={`font-medium ${transaction.type === 'income' ? 'text-green-600' : 'text-red-600'}`}>
                   {transaction.type === 'income' ? '+' : '-'}
-                  {transaction.currency} {transaction.amount.toFixed(2)}
+                  {euro(transaction.amount)}
                 </TableCell>
                 <TableCell>
                   <Badge variant={
@@ -122,21 +126,21 @@ export function FinancialAPI() {
             <TableRow>
               <TableCell colSpan={5} className="font-bold text-right">Total Income</TableCell>
               <TableCell className="text-green-700 font-semibold">
-                +USD {totalIncome.toFixed(2)}
+                +{euro(totalIncome)}
               </TableCell>
               <TableCell />
             </TableRow>
             <TableRow>
               <TableCell colSpan={5} className="font-bold text-right">Total Expenses</TableCell>
               <TableCell className="text-red-700 font-semibold">
-                -USD {totalExpense.toFixed(2)}
+                -{euro(totalExpense)}
               </TableCell>
               <TableCell />
             </TableRow>
             <TableRow>
               <TableCell colSpan={5} className="font-bold text-right">Net Total</TableCell>
               <TableCell className={`font-bold ${totalNet >= 0 ? 'text-green-800' : 'text-red-800'}`}>
-                {totalNet >= 0 ? "+" : "-"}USD {Math.abs(totalNet).toFixed(2)}
+                {totalNet >= 0 ? "+" : "-"}{euro(Math.abs(totalNet))}
               </TableCell>
               <TableCell />
             </TableRow>

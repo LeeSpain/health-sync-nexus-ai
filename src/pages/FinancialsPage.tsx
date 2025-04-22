@@ -54,7 +54,7 @@ const FinancialsPage = () => {
           <div>
             <h1 className="text-3xl font-bold">Financial Management</h1>
             <p className="text-muted-foreground mt-1">
-              Track and manage financial transactions across all GHS platforms
+              Track and manage all platform finances, incoming and outgoing funds. <b>All figures displayed in euros.</b>
             </p>
           </div>
           <div className="flex items-center gap-2">
@@ -93,7 +93,7 @@ const FinancialsPage = () => {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">$126,000</div>
+              <div className="text-2xl font-bold">€126,000</div>
               <p className="text-xs text-muted-foreground">
                 <span className="text-green-500">↑8.5%</span> vs last period
               </p>
@@ -108,7 +108,7 @@ const FinancialsPage = () => {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">$43,000</div>
+              <div className="text-2xl font-bold">€43,000</div>
               <p className="text-xs text-muted-foreground">
                 <span className="text-red-500">↑4.2%</span> vs last period
               </p>
@@ -123,7 +123,7 @@ const FinancialsPage = () => {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">$83,000</div>
+              <div className="text-2xl font-bold">€83,000</div>
               <p className="text-xs text-muted-foreground">
                 <span className="text-green-500">↑12.3%</span> vs last period
               </p>
@@ -167,7 +167,7 @@ const FinancialsPage = () => {
                         <DollarSign className="h-5 w-5 text-blue-600" />
                       </div>
                       <h3 className="font-medium">Revenue Report</h3>
-                      <p className="text-xs text-muted-foreground">Detailed breakdown of all revenue sources</p>
+                      <p className="text-xs text-muted-foreground">Detailed breakdown of all revenue sources (in euros)</p>
                     </div>
                   </Card>
                   
@@ -177,7 +177,7 @@ const FinancialsPage = () => {
                         <CreditCard className="h-5 w-5 text-red-600" />
                       </div>
                       <h3 className="font-medium">Expense Report</h3>
-                      <p className="text-xs text-muted-foreground">Analysis of all expenses by category</p>
+                      <p className="text-xs text-muted-foreground">Analysis of all expenses by category (in euros)</p>
                     </div>
                   </Card>
                   
@@ -187,7 +187,7 @@ const FinancialsPage = () => {
                         <Landmark className="h-5 w-5 text-green-600" />
                       </div>
                       <h3 className="font-medium">Profit & Loss</h3>
-                      <p className="text-xs text-muted-foreground">Complete P&L statement</p>
+                      <p className="text-xs text-muted-foreground">Complete P&amp;L statement (euros)</p>
                     </div>
                   </Card>
                 </div>
@@ -201,3 +201,4 @@ const FinancialsPage = () => {
 };
 
 export default FinancialsPage;
+
