@@ -1,4 +1,3 @@
-
 import { AgentCommand, AgentConfiguration, AgentSyncEvent, AgentType, PlatformType } from './types';
 
 // This would be replaced with actual API calls in a real implementation
@@ -7,7 +6,10 @@ const mockApiDelay = (ms: number) => new Promise(resolve => setTimeout(resolve, 
 export class AgentService {
   private static instance: AgentService;
   private agentConfigurations: Record<AgentType, AgentConfiguration>;
-  
+  private metricsHistory: AgentMetricsSyncEvent[] = [];
+  private conversationHistory: AgentConversationSyncEvent[] = [];
+  private escalationHistory: AgentEscalationSyncEvent[] = [];
+
   private constructor() {
     // Initialize with default configurations
     this.agentConfigurations = {
@@ -121,16 +123,72 @@ export class AgentService {
   // Methods for platforms to sync data back to GHS Command
   
   public async syncAgentMetrics(event: AgentSyncEvent): Promise<void> {
-    // This would be called by platforms to sync data back to Isabella
-    console.log(`Received sync event from ${event.agentId} on ${event.platform}:`, event);
+    // Basic validation
+    if (!event || !event.agentId || !event.platform || !event.timestamp || !event.type || !event.data) {
+      throw new Error('Invalid sync event: Required fields missing');
+    }
+
+    switch (event.type) {
+      case 'metrics':
+        this.metricsHistory.push(event as AgentMetricsSyncEvent);
+        console.log(`[SYNC] Metrics:`, event);
+        break;
+      case 'conversation':
+        this.conversationHistory.push(event as AgentConversationSyncEvent);
+        console.log(`[SYNC] Conversation:`, event);
+        break;
+      case 'escalation':
+        this.escalationHistory.push(event as AgentEscalationSyncEvent);
+        console.log(`[SYNC] Escalation:`, event);
+        break;
+      default:
+        throw new Error(`syncAgentMetrics received unknown event type: ${event.type}`);
+    }
+
     await mockApiDelay(700);
-    // In a real implementation, this would store the data for Isabella to access
+    // In a real implementation, data would persist for Isabella to access
   }
-  
+
+  // Fetch historical events for oversight/audit
+  public async getAgentMetricsHistory(agentId?: string): Promise<AgentMetricsSyncEvent[]> {
+    await mockApiDelay(400);
+    if (agentId) {
+      return this.metricsHistory.filter(e => e.agentId === agentId);
+    }
+    return this.metricsHistory;
+  }
+
+  public async getAgentConversationsHistory(agentId?: string): Promise<AgentConversationSyncEvent[]> {
+    await mockApiDelay(400);
+    if (agentId) {
+      return this.conversationHistory.filter(e => e.agentId === agentId);
+    }
+    return this.conversationHistory;
+  }
+
+  public async getAgentEscalationHistory(agentId?: string): Promise<AgentEscalationSyncEvent[]> {
+    await mockApiDelay(400);
+    if (agentId) {
+      return this.escalationHistory.filter(e => e.agentId === agentId);
+    }
+    return this.escalationHistory;
+  }
+
   public async reportEscalation(fromAgent: AgentType, toAgent: AgentType, reason: string, conversationId: string): Promise<void> {
+    if (!fromAgent || !toAgent || !reason || !conversationId) {
+      throw new Error("reportEscalation requires fromAgent, toAgent, reason, and conversationId");
+    }
+    // Log event to escalation history for audit by Isabella
+    const event: AgentEscalationSyncEvent = {
+      type: 'escalation',
+      agentId: fromAgent,
+      platform: this.agentConfigurations[fromAgent].platform,
+      timestamp: new Date().toISOString(),
+      data: { fromAgent, toAgent, reason, conversationId }
+    };
+    this.escalationHistory.push(event);
     console.log(`Escalation from ${fromAgent} to ${toAgent}:`, reason);
     await mockApiDelay(600);
-    // In a real implementation, this would trigger notifications and updates
   }
 }
 
