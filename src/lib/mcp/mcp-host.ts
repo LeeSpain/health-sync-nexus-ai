@@ -1,4 +1,3 @@
-
 import { 
   MCPHost, 
   MCPToolDefinition, 
@@ -42,7 +41,7 @@ export class MCPHostService implements MCPHost {
     console.log(`[MCP Host] Registered server for tool: ${toolName} at ${serverUrl}`);
   }
   
-  public async executeTool(request: MCPToolRequest): Promise<MCPToolResponse> {
+  private async executeTool(request: MCPToolRequest): Promise<MCPToolResponse> {
     const { tool, inputs, context, metadata } = request;
     
     const toolDefinition = this.tools.get(tool);
