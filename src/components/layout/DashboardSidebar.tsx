@@ -8,7 +8,7 @@ import {
   BarChart4, 
   Command, 
   Cog, 
-  escalator,  // Corrected to lowercase 
+  Stairs,  // Replace escalator with Stairs 
   FolderKanban,
   HelpCircle,
   Home, 
@@ -136,7 +136,7 @@ export function DashboardSidebar() {
                   isActivePath('/escalations') && "bg-secondary/50"
                 )}
               >
-                <escalator className="h-4 w-4" />
+                <Stairs className="h-4 w-4" /> {/* Use Stairs instead of escalator */}
                 <span>Escalations</span>
               </Button>
             </Link>
