@@ -2,6 +2,7 @@
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { PlatformOverview } from './PlatformOverview';
+import { PlatformConnections } from './PlatformConnections';
 import { useLanguage } from '@/hooks/useLanguage';
 import { dashboardTranslations } from '@/locales/dashboard';
 
@@ -42,6 +43,16 @@ export const CRMDashboard = () => {
 
   return (
     <div className="space-y-6">
+      <Card>
+        <CardHeader>
+          <CardTitle>Platform Connections</CardTitle>
+          <CardDescription>Manage integrations with your healthcare platforms</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <PlatformConnections />
+        </CardContent>
+      </Card>
+
       <Card>
         <CardHeader>
           <CardTitle>Combined Platform Statistics</CardTitle>
