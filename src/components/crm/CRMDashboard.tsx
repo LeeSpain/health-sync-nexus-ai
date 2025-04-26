@@ -1,14 +1,21 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { PlatformOverview } from './PlatformOverview';
 import { PlatformConnections } from './PlatformConnections';
 import { useLanguage } from '@/hooks/useLanguage';
 import { dashboardTranslations } from '@/locales/dashboard';
+import { CustomerProfilesModule } from './CustomerProfilesModule';
+import { ProviderNetworkModule } from './ProviderNetworkModule';
+import { DocumentManagementModule } from './DocumentManagementModule';
+import { SubscriptionManagementModule } from './SubscriptionManagementModule';
+import { ArrowRightLeft, Users, ClipboardList, CircleDollarSign } from 'lucide-react';
 
 export const CRMDashboard = () => {
   const { language } = useLanguage();
   const t = dashboardTranslations[language];
+  const [activeTab, setActiveTab] = useState("overview");
 
   // Mock data - in a real app, this would come from an API
   const platformStats = [
@@ -76,11 +83,47 @@ export const CRMDashboard = () => {
         </CardContent>
       </Card>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {platformStats.map((platform) => (
-          <PlatformOverview key={platform.name} platform={platform} />
-        ))}
-      </div>
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+        <TabsList className="grid grid-cols-4 mb-6">
+          <TabsTrigger value="overview" className="flex items-center gap-2">
+            <ArrowRightLeft className="h-4 w-4" />
+            Platform Overview
+          </TabsTrigger>
+          <TabsTrigger value="customers" className="flex items-center gap-2">
+            <Users className="h-4 w-4" />
+            Customer & Provider
+          </TabsTrigger>
+          <TabsTrigger value="documents" className="flex items-center gap-2">
+            <ClipboardList className="h-4 w-4" />
+            Documents
+          </TabsTrigger>
+          <TabsTrigger value="subscriptions" className="flex items-center gap-2">
+            <CircleDollarSign className="h-4 w-4" />
+            Subscriptions
+          </TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="overview" className="mt-0">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {platformStats.map((platform) => (
+              <PlatformOverview key={platform.name} platform={platform} />
+            ))}
+          </div>
+        </TabsContent>
+
+        <TabsContent value="customers" className="mt-0">
+          <CustomerProfilesModule />
+          <ProviderNetworkModule />
+        </TabsContent>
+
+        <TabsContent value="documents" className="mt-0">
+          <DocumentManagementModule />
+        </TabsContent>
+
+        <TabsContent value="subscriptions" className="mt-0">
+          <SubscriptionManagementModule />
+        </TabsContent>
+      </Tabs>
     </div>
   );
 };
