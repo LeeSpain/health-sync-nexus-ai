@@ -11,18 +11,11 @@ import {
 } from "@/components/ui/breadcrumb";
 import { useLanguage } from '@/hooks/useLanguage';
 import { dashboardTranslations } from '@/locales/dashboard';
-import { ImplementationPlanContent } from '@/components/implementation-plan/ImplementationPlanContent';
+import { CRMDashboard } from '@/components/crm/CRMDashboard';
 
-const ImplementationPlanPage = () => {
+const CRMPage = () => {
   const { language } = useLanguage();
   const t = dashboardTranslations[language];
-
-  // Translations for page title
-  const pageTitle = {
-    en: "GHS Command CRM",
-    es: "CRM de GHS Command",
-    nl: "GHS Command CRM"
-  };
 
   return (
     <DashboardLayout>
@@ -35,16 +28,16 @@ const ImplementationPlanPage = () => {
             <BreadcrumbSeparator />
             <BreadcrumbItem>
               <BreadcrumbPage>
-                {pageTitle[language] || pageTitle.en}
+                GHS Command CRM
               </BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
         
-        <ImplementationPlanContent />
+        <CRMDashboard />
       </div>
     </DashboardLayout>
   );
 };
 
-export default ImplementationPlanPage;
+export default CRMPage;
