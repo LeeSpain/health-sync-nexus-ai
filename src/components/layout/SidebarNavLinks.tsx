@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -13,7 +12,7 @@ import {
   LayoutDashboard,
   MessageSquare,
   Layers,
-  FileText
+  Database
 } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { dashboardTranslations } from '@/locales/dashboard';
@@ -56,19 +55,19 @@ export function SidebarNavLinks() {
               <span>{t.command || "Command"}</span>
             </Button>
           </Link>
-          <Link to="/implementation-plan">
+          <Link to="/crm">
             <Button
-              variant={isActivePath('/implementation-plan') ? "secondary" : "ghost"}
+              variant={isActivePath('/crm') ? "secondary" : "ghost"}
               className={cn(
                 "w-full justify-start gap-2",
-                isActivePath('/implementation-plan') && "bg-secondary/50"
+                isActivePath('/crm') && "bg-secondary/50"
               )}
             >
-              <FileText className="h-4 w-4" />
+              <Database className="h-4 w-4" />
               <span>
-                {language === "en" ? "Implementation Plan" : 
-                 language === "es" ? "Plan de Implementación" : 
-                 "Implementatieplan"}
+                {language === "en" ? "Central CRM" : 
+                 language === "es" ? "CRM Central" : 
+                 "Centrale CRM"}
               </span>
             </Button>
           </Link>
