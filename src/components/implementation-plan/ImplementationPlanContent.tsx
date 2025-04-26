@@ -452,10 +452,8 @@ export const ImplementationPlanContent: React.FC = () => {
           "Analítica: Integración con el marco de análisis existente"
         ]
       },
-      // Continue with Spanish translations for all sections
       coreInfrastructure: {
         title: "1. Infraestructura Básica del CRM",
-        // Content similar to English but translated to Spanish
         sections: [
           {
             title: "Módulo de Perfiles de Cliente",
@@ -470,10 +468,384 @@ export const ImplementationPlanContent: React.FC = () => {
               "Herramientas de notas y comunicación interna"
             ]
           },
-          // More sections translated...
+          {
+            title: "Gestión de Red de Proveedores",
+            items: [
+              "Base de datos de proveedores de salud que conecta profesionales de NurseSync y MedicSync",
+              "Verificación y seguimiento de credenciales",
+              "Gestión de especialidades y experiencia",
+              "Seguimiento de disponibilidad y capacidad",
+              "Métricas de rendimiento y puntuaciones de calidad",
+              "Gestión de compensación e incentivos",
+              "Seguimiento de formación y desarrollo"
+            ]
+          },
+          {
+            title: "Gestión de Relaciones",
+            items: [
+              "Mapeo de red familiar/cuidador",
+              "Historial de relaciones proveedor-paciente",
+              "Seguimiento y atribución de referencias",
+              "Herramientas de visualización de red",
+              "Análisis de fuerza de conexión",
+              "Gestión de preferencias de comunicación",
+              "Puntuación de salud de relaciones"
+            ]
+          },
+          {
+            title: "Gestión de Documentos",
+            items: [
+              "Repositorio centralizado para todos los documentos relacionados con clientes",
+              "Gestión de contratos y acuerdos",
+              "Documentación de cumplimiento y pistas de auditoría",
+              "Gestión de plantillas para documentos comunes",
+              "Control de versiones y flujos de trabajo de aprobación",
+              "Capacidades de compartición segura",
+              "OCR para digitalización de documentos"
+            ]
+          }
         ]
       },
-      // Continue with all other section translations...
+      businessOperations: {
+        title: "2. Operaciones de Negocio",
+        sections: [
+          {
+            title: "Gestión de Suscripciones",
+            items: [
+              "Seguimiento unificado de suscripciones en todas las plataformas",
+              "Procesamiento de facturación y pagos",
+              "Gestión del ciclo de vida de suscripciones",
+              "Flujos de trabajo de actualización/degradación",
+              "Herramientas de prevención de cancelaciones",
+              "Reconocimiento y reportes de ingresos",
+              "Gestión de paquetes y bundles"
+            ]
+          },
+          {
+            title: "Sistema de Calendario",
+            items: [
+              "Calendario de citas multiplataforma",
+              "Codificación por colores para diferentes plataformas y tipos de eventos",
+              "Gestión de disponibilidad de proveedores",
+              "Resolución de conflictos de programación",
+              "Automatización de recordatorios de citas",
+              "Gestión de asignación de recursos",
+              "Capacidades de exportación y sincronización de calendario",
+              "Integración de IA para asistencia de programación"
+            ]
+          },
+          {
+            title: "Inventario y Cadena de Suministro",
+            items: [
+              "Gestión de inventario de dispositivos",
+              "Procesamiento y cumplimiento de pedidos",
+              "Visibilidad de la cadena de suministro",
+              "Gestión de devoluciones y garantías",
+              "Previsión de inventario",
+              "Gestión de almacén y distribución",
+              "Asignación y seguimiento de dispositivos",
+              "Programas de mantenimiento y servicio"
+            ]
+          },
+          {
+            title: "Automatización de Marketing",
+            items: [
+              "Gestión de campañas en todas las plataformas",
+              "Herramientas de segmentación de clientes",
+              "Plantillas de correo electrónico y notificaciones",
+              "Análisis de rendimiento de campañas",
+              "Capacidades de prueba A/B",
+              "Automatización de campañas por goteo",
+              "Herramientas de venta cruzada y venta adicional",
+              "Motor de personalización"
+            ]
+          }
+        ]
+      },
+      advancedFeatures: {
+        title: "3. Características Avanzadas",
+        sections: [
+          {
+            title: "Mapeo de Viaje del Cliente",
+            items: [
+              "Mapeo visual de viaje en todas las plataformas",
+              "Seguimiento y celebración de hitos",
+              "Análisis del embudo de conversión",
+              "Identificación de puntos de abandono",
+              "Herramientas de optimización de viaje",
+              "Comparación con rutas de viaje ideales",
+              "Reconocimiento de patrones de comportamiento",
+              "Recomendaciones de próxima mejor acción"
+            ]
+          },
+          {
+            title: "Gestión de Nivel de Servicio",
+            items: [
+              "Seguimiento de SLA para soporte y respuestas clínicas",
+              "Métricas de rendimiento y paneles",
+              "Gestión de reglas de escalamiento",
+              "Monitoreo de aseguramiento de calidad",
+              "Optimización del tiempo de respuesta",
+              "Herramientas de equilibrado de carga de trabajo",
+              "Cumplimiento de requisitos regulatorios",
+              "Seguimiento de mejoras de servicio"
+            ]
+          },
+          {
+            title: "Sistema de Encuestas y Feedback",
+            items: [
+              "Seguimiento de NPS y CSAT en todas las plataformas",
+              "Creación de encuestas personalizables",
+              "Análisis de sentimiento en respuestas",
+              "Panel de seguimiento de mejoras",
+              "Flujos de trabajo de seguimiento automático",
+              "Categorización y etiquetado de feedback",
+              "Análisis de tendencias a lo largo del tiempo",
+              "Benchmarking competitivo"
+            ]
+          },
+          {
+            title: "Flujos de Trabajo de Incorporación",
+            items: [
+              "Gestión del proceso de incorporación de clientes",
+              "Seguimiento de configuración de dispositivos",
+              "Monitoreo de finalización de capacitación",
+              "Automatización de secuencia de bienvenida",
+              "Seguimiento de logros de hitos",
+              "Recomendaciones de contenido educativo",
+              "Visualización de progreso",
+              "Optimización basada en tasas de finalización"
+            ]
+          }
+        ]
+      },
+      ecosystemIntegration: {
+        title: "4. Integración del Ecosistema",
+        sections: [
+          {
+            title: "Portal de Socios",
+            items: [
+              "Interfaz para socios externos y proveedores de servicios",
+              "Seguimiento de ingresos compartidos y comisiones",
+              "Análisis de rendimiento de socios",
+              "Gestión de campañas de co-marketing",
+              "Sistema de distribución de leads",
+              "Gestión de niveles de socios",
+              "Herramientas de certificación y formación",
+              "Compartición de documentos y colaboración"
+            ]
+          },
+          {
+            title: "Integración de Base de Conocimientos",
+            items: [
+              "Gestión de conocimientos interna y orientada al cliente",
+              "Creación y gestión de FAQ",
+              "Analíticas de uso en contenido de conocimiento",
+              "Motor de recomendación de contenido",
+              "Optimización de búsqueda",
+              "Gestión del ciclo de vida del contenido",
+              "Herramientas de traducción y localización",
+              "Recopilación de feedback sobre utilidad de artículos"
+            ]
+          },
+          {
+            title: "Gestión de Cumplimiento",
+            items: [
+              "Seguimiento de cumplimiento regulatorio",
+              "Gestión de certificaciones y licencias",
+              "Herramientas de preparación para auditorías",
+              "Informes y resolución de incidentes",
+              "Seguimiento de formación en cumplimiento",
+              "Gestión de cambios para regulaciones",
+              "Marco de evaluación de riesgos",
+              "Informes de cumplimiento"
+            ]
+          },
+          {
+            title: "Aplicación Móvil",
+            items: [
+              "Versión móvil del CRM para operaciones de campo",
+              "Notificaciones push para eventos críticos",
+              "Capacidad offline para trabajo remoto",
+              "Optimizaciones de flujo de trabajo específicas para móvil",
+              "Visualizaciones apropiadas para dispositivos",
+              "Autenticación segura",
+              "Integración de cámara para captura de documentos",
+              "Características basadas en ubicación"
+            ]
+          }
+        ]
+      },
+      intelligenceLayer: {
+        title: "5. Capa de Inteligencia",
+        sections: [
+          {
+            title: "Panel de Inteligencia Empresarial",
+            items: [
+              "Análisis de ingresos multiplataforma",
+              "Métricas de adquisición y retención de clientes",
+              "Análisis de rendimiento de la red de proveedores",
+              "Análisis de uso y ventas de dispositivos",
+              "Visualización de expansión de mercado",
+              "Insights empresariales generados por IA",
+              "Constructor de informes personalizable",
+              "Informes programados y alertas"
+            ]
+          },
+          {
+            title: "Integración de IA",
+            items: [
+              "Comandos mejorados de Isabella para funciones de CRM",
+              "Consultas en lenguaje natural de datos empresariales",
+              "Recomendaciones impulsadas por IA para compromiso con el cliente",
+              "Análisis predictivo para prevención de abandono",
+              "Segmentación inteligente de base de clientes",
+              "Enriquecimiento automatizado de datos",
+              "Detección de sentimiento en comunicaciones",
+              "Detección de anomalías en métricas empresariales"
+            ]
+          },
+          {
+            title: "Análisis Predictivo",
+            items: [
+              "Predicción y prevención de abandono",
+              "Previsión de valor de por vida",
+              "Proyección de necesidades de recursos",
+              "Análisis de tendencias de mercado",
+              "Optimización de precios",
+              "Planificación de capacidad de proveedores",
+              "Predicción de fallos de dispositivos",
+              "Previsión de flujo de caja"
+            ]
+          }
+        ]
+      },
+      integrationRequirements: {
+        title: "Requisitos de Integración",
+        sections: [
+          {
+            title: "Integraciones de Plataforma",
+            items: [
+              "iHealth-Sync: Datos de dispositivos, métricas de salud de usuarios, redes familiares",
+              "NurseSync: Perfiles de proveedores, registros de atención, datos de consulta",
+              "MedicSync: Registros clínicos, datos de médicos, planes de tratamiento",
+              "Isabella AI: Procesamiento de comandos, comprensión de lenguaje natural",
+              "Sistema Financiero: Datos de facturación, métricas de ingresos, seguimiento de gastos",
+              "Sistema de Análisis: Métricas existentes, estructuras de informes"
+            ]
+          },
+          {
+            title: "Integraciones Externas",
+            items: [
+              "Sistemas de procesamiento de pagos",
+              "Plataformas de correo electrónico y comunicación",
+              "Sistemas de calendario externos (Google, Outlook)",
+              "Soluciones de almacenamiento de documentos",
+              "Herramientas de videoconferencia",
+              "Servicios de SMS y notificaciones"
+            ]
+          }
+        ]
+      },
+      technicalConsiderations: {
+        title: "Consideraciones Técnicas",
+        sections: [
+          {
+            title: "Requisitos de Seguridad",
+            items: [
+              "Cumplimiento HIPAA en todos los componentes",
+              "Cumplimiento GDPR y protección de datos regional",
+              "Control de acceso basado en roles para todas las funciones CRM",
+              "Registro de auditoría de todas las operaciones sensibles",
+              "Cifrado de datos en reposo y en tránsito",
+              "Autenticación de dos factores para operaciones sensibles"
+            ]
+          },
+          {
+            title: "Requisitos de Rendimiento",
+            items: [
+              "Tiempo de respuesta inferior a 500ms para operaciones estándar",
+              "Soporte para usuarios concurrentes que coincidan con el uso de la plataforma",
+              "Escalabilidad para manejar el crecimiento proyectado durante 5 años",
+              "Degradación elegante bajo carga alta",
+              "Sincronización eficiente de datos entre plataformas"
+            ]
+          },
+          {
+            title: "Requisitos de Localización",
+            items: [
+              "Soporte completo para inglés, español y holandés",
+              "Manejo de divisas en euros con formato regional",
+              "Formato de fecha y hora apropiado para la localidad",
+              "Adaptación de contenido culturalmente apropiada",
+              "Expandible a idiomas adicionales"
+            ]
+          },
+          {
+            title: "Directrices de Interfaz de Usuario",
+            items: [
+              "Mantener el lenguaje de diseño existente de GHS Command Console",
+              "Tipografía, esquema de colores y diseño de componentes consistente",
+              "Diseño basado en tarjetas para los paneles principales",
+              "Diseño responsivo que admite todos los tamaños de dispositivos",
+              "Cumplimiento de accesibilidad (WCAG 2.1 AA)",
+              "Iconografía y jerarquía visual consistente",
+              "Soporte de modo oscuro/claro coincidiendo con el sistema existente"
+            ]
+          }
+        ]
+      },
+      implementation: {
+        title: "Estrategia de Implementación",
+        sections: [
+          {
+            title: "Estrategia de Pruebas",
+            items: [
+              "Pruebas unitarias de todos los componentes",
+              "Pruebas de integración de conexiones de plataforma",
+              "Pruebas de aceptación de usuario con partes interesadas",
+              "Pruebas de rendimiento bajo carga anticipada",
+              "Pruebas de penetración de seguridad",
+              "Pruebas de cumplimiento de accesibilidad",
+              "Pruebas de compatibilidad entre navegadores y dispositivos"
+            ]
+          },
+          {
+            title: "Formación y Documentación",
+            items: [
+              "Materiales de formación para administradores",
+              "Documentación para usuarios finales",
+              "Guías técnicas de integración",
+              "Documentación de API",
+              "Tutoriales en video para flujos de trabajo clave",
+              "Comunicaciones regulares de actualización de funciones"
+            ]
+          },
+          {
+            title: "Soporte Post-Implementación",
+            items: [
+              "Período de hipercuidado de 3 meses después de la fase final",
+              "Revisiones programadas de rendimiento",
+              "Recopilación y análisis de feedback de usuarios",
+              "Recomendaciones de mejora continua",
+              "Mejoras regulares de funciones basadas en datos de uso"
+            ]
+          },
+          {
+            title: "Métricas de Éxito",
+            items: [
+              "Aumento en viajes de usuario multiplataforma",
+              "Mejoras en satisfacción y retención de proveedores",
+              "Reducción en gastos administrativos",
+              "Mejora en tasas de conversión entre plataformas",
+              "Mejora en métricas de retención de clientes",
+              "Crecimiento de ingresos de oportunidades multiplataforma",
+              "Reducción en tiempos de respuesta para problemas de clientes",
+              "Mejora en precisión y completitud de datos"
+            ]
+          }
+        ]
+      }
     },
     nl: {
       executiveSummary: {
@@ -499,10 +871,8 @@ export const ImplementationPlanContent: React.FC = () => {
           "Analytische gegevens: Integratie met bestaand analyseframework"
         ]
       },
-      // Continue with Dutch translations for all sections
       coreInfrastructure: {
         title: "1. Kern CRM-infrastructuur",
-        // Content similar to English but translated to Dutch
         sections: [
           {
             title: "Klantprofielmodule",
@@ -517,10 +887,384 @@ export const ImplementationPlanContent: React.FC = () => {
               "Notities en interne communicatiehulpmiddelen"
             ]
           },
-          // More sections translated...
+          {
+            title: "Beheer van Zorgverlenernetwerk",
+            items: [
+              "Zorgverlenerdatabase die NurseSync en MedicSync professionals verbindt",
+              "Verificatie en tracking van credentials",
+              "Beheer van specialismen en expertise",
+              "Tracking van beschikbaarheid en capaciteit",
+              "Prestatiemetrieken en kwaliteitsscores",
+              "Beheer van vergoedingen en incentives",
+              "Tracking van training en ontwikkeling"
+            ]
+          },
+          {
+            title: "Relatiebeheer",
+            items: [
+              "Familie/verzorger-netwerk mapping",
+              "Zorgverlener-patiënt relatiegeschiedenis",
+              "Tracking en toewijzing van verwijzingen",
+              "Netwerkvisualisatietools",
+              "Analyse van verbindingssterkte",
+              "Beheer van communicatievoorkeuren",
+              "Scoring van relatiegezondheid"
+            ]
+          },
+          {
+            title: "Documentbeheer",
+            items: [
+              "Gecentraliseerde opslagplaats voor alle klantgerelateerde documenten",
+              "Beheer van contracten en overeenkomsten",
+              "Compliance-documentatie en audittrails",
+              "Sjabloonbeheer voor veelvoorkomende documenten",
+              "Versiebeheer en goedkeuringswerkstromen",
+              "Beveiligde deelmogelijkheden",
+              "OCR voor documentdigitalisering"
+            ]
+          }
         ]
       },
-      // Continue with all other section translations...
+      businessOperations: {
+        title: "2. Bedrijfsoperaties",
+        sections: [
+          {
+            title: "Abonnementenbeheer",
+            items: [
+              "Uniforme abonnementsregistratie over platforms heen",
+              "Facturerings- en betalingsverwerking",
+              "Beheer van abonnementslevenscyclus",
+              "Upgrade/downgrade werkstromen",
+              "Tools voor annuleringspreventie",
+              "Inkomstenherkenning en -rapportage",
+              "Bundel- en pakketbeheer"
+            ]
+          },
+          {
+            title: "Kalendersysteem",
+            items: [
+              "Cross-platform afsprakenkalender",
+              "Kleurcodering voor verschillende platforms en eventtypes",
+              "Beheer van zorgverlenersbeschikbaarheid",
+              "Oplossing voor planningsconflicten",
+              "Automatisering van afspraakherinneringen",
+              "Beheer van resourcetoewijzing",
+              "Export- en synchronisatiemogelijkheden voor kalender",
+              "AI-integratie voor planningsassistentie"
+            ]
+          },
+          {
+            title: "Inventaris en Toeleveringsketen",
+            items: [
+              "Beheer van apparaatinventaris",
+              "Orderverwerking en -afhandeling",
+              "Zichtbaarheid van toeleveringsketen",
+              "Beheer van retouren en garanties",
+              "Inventarisvoorspelling",
+              "Magazijn- en distributiebeheer",
+              "Toewijzing en tracking van apparaten",
+              "Onderhouds- en serviceplanningen"
+            ]
+          },
+          {
+            title: "Marketing Automatisering",
+            items: [
+              "Campagnebeheer over platforms heen",
+              "Tools voor klantsegmentatie",
+              "E-mail- en notificatiesjablonen",
+              "Analyse van campagneprestaties",
+              "A/B-testingmogelijkheden",
+              "Automatisering van drip-campagnes",
+              "Cross-selling en upselling tools",
+              "Personalisatie-engine"
+            ]
+          }
+        ]
+      },
+      advancedFeatures: {
+        title: "3. Geavanceerde Functies",
+        sections: [
+          {
+            title: "Klantreis Mapping",
+            items: [
+              "Visuele reis-mapping over platforms heen",
+              "Milestone tracking en viering",
+              "Conversiefunnel analyse",
+              "Identificatie van uitvalpunten",
+              "Tools voor reisoptimalisatie",
+              "Vergelijking met ideale reispaden",
+              "Gedragspatroonherkenning",
+              "Next-best-action aanbevelingen"
+            ]
+          },
+          {
+            title: "Serviceniveaubeheer",
+            items: [
+              "SLA-tracking voor ondersteunings- en klinische reacties",
+              "Prestatiemetrieken en dashboards",
+              "Beheer van escalatieregels",
+              "Kwaliteitsborging monitoring",
+              "Optimalisatie van reactietijd",
+              "Tools voor werkdrukbalancering",
+              "Naleving van regelgevingsvereisten",
+              "Tracking van serviceverbetering"
+            ]
+          },
+          {
+            title: "Feedback- en Enquêtesysteem",
+            items: [
+              "NPS- en CSAT-tracking over platforms heen",
+              "Aanpasbare enquêtecreatie",
+              "Sentimentanalyse op reacties",
+              "Verbetertracking dashboard",
+              "Automatische follow-up werkstromen",
+              "Feedback categorisatie en tagging",
+              "Trendanalyse over tijd",
+              "Competitieve benchmarking"
+            ]
+          },
+          {
+            title: "Onboarding Werkstromen",
+            items: [
+              "Beheer van klant-onboardingproces",
+              "Tracking van apparaatinstallatie",
+              "Monitoring van trainingsvoltooiing",
+              "Automatisering van welkomstsequentie",
+              "Tracking van milestone-prestaties",
+              "Aanbevelingen voor educatieve inhoud",
+              "Voortgangsvisualisatie",
+              "Optimalisatie gebaseerd op voltooiingspercentages"
+            ]
+          }
+        ]
+      },
+      ecosystemIntegration: {
+        title: "4. Ecosysteemintegratie",
+        sections: [
+          {
+            title: "Partnerportaal",
+            items: [
+              "Interface voor externe partners en serviceproviders",
+              "Inkomstendelingsregistratie en commissie-tracking",
+              "Partnerprestatieanalyse",
+              "Co-marketing campagnebeheer",
+              "Lead-distributiesysteem",
+              "Beheer van partnerniveaus",
+              "Certificering- en trainingstools",
+              "Documentendeling en samenwerking"
+            ]
+          },
+          {
+            title: "Kennisbank Integratie",
+            items: [
+              "Klantgerichte en interne kennisbeheer",
+              "FAQ-creatie en -beheer",
+              "Gebruiksanalyse op kennisinhoud",
+              "Inhoudsaanbevelingsengine",
+              "Zoekoptimalisatie",
+              "Beheer van inhoudslevenscyclus",
+              "Vertaal- en lokalisatietools",
+              "Feedbackverzameling over artikelnut"
+            ]
+          },
+          {
+            title: "Compliance-beheer",
+            items: [
+              "Tracking van regelgevingsnaleving",
+              "Beheer van certificeringen en licenties",
+              "Tools voor auditvoorbereiding",
+              "Incidentrapportage en -oplossing",
+              "Tracking van compliance-training",
+              "Verandermanagement voor regelgeving",
+              "Risicobeoordelingskader",
+              "Compliance-rapportage"
+            ]
+          },
+          {
+            title: "Mobiele Applicatie",
+            items: [
+              "Mobiele versie van het CRM voor veldoperaties",
+              "Push-notificaties voor kritieke gebeurtenissen",
+              "Offline-mogelijkheid voor werk op afstand",
+              "Mobiel-specifieke werkstroomoptimalisaties",
+              "Apparaatgeschikte visualisaties",
+              "Beveiligde authenticatie",
+              "Camera-integratie voor documentvastlegging",
+              "Locatiegebaseerde functies"
+            ]
+          }
+        ]
+      },
+      intelligenceLayer: {
+        title: "5. Intelligentielaag",
+        sections: [
+          {
+            title: "Business Intelligence Dashboard",
+            items: [
+              "Cross-platform inkomstenanalyse",
+              "Klantacquisitie- en retentiemetrieken",
+              "Prestatieanalyse van zorgverlenernetwerk",
+              "Apparaatgebruik- en verkoopanalyse",
+              "Marktuitbreidingsvisualisatie",
+              "Door AI gegenereerde business inzichten",
+              "Aanpasbare rapportbuilder",
+              "Geplande rapportage en waarschuwingen"
+            ]
+          },
+          {
+            title: "AI-integratie",
+            items: [
+              "Verbeterde Isabella-commando's voor CRM-functies",
+              "Natural language querying van bedrijfsgegevens",
+              "Door AI aangedreven aanbevelingen voor klantbetrokkenheid",
+              "Voorspellende analyse voor churnpreventie",
+              "Slimme segmentatie van klantenbasis",
+              "Geautomatiseerde gegevensverrijking",
+              "Sentimentdetectie in communicatie",
+              "Anomaliedetectie in bedrijfsmetriek"
+            ]
+          },
+          {
+            title: "Voorspellende Analyse",
+            items: [
+              "Churnvoorspelling en -preventie",
+              "Levensduurwaardevoorspelling",
+              "Projectie van resourcebehoeften",
+              "Markttrendanalyse",
+              "Prijsoptimalisatie",
+              "Capaciteitsplanning voor zorgverleners",
+              "Voorspelling van apparaatstoringen",
+              "Cashflowvoorspelling"
+            ]
+          }
+        ]
+      },
+      integrationRequirements: {
+        title: "Integratievereisten",
+        sections: [
+          {
+            title: "Platformintegraties",
+            items: [
+              "iHealth-Sync: Apparaatgegevens, gebruikersgezondheidsmetrieken, familienetwerken",
+              "NurseSync: Zorgverlenerprofielen, zorgregistraties, consultatiegegevens",
+              "MedicSync: Klinische registraties, artsengegevens, behandelplannen",
+              "Isabella AI: Commandoverwerking, natural language understanding",
+              "Financieel systeem: Factureringsgegevens, inkomstenmetriek, uitgavenregistratie",
+              "Analytisch systeem: Bestaande metrieken, rapportagestructuren"
+            ]
+          },
+          {
+            title: "Externe Integraties",
+            items: [
+              "Betalingsverwerkingssystemen",
+              "E-mail- en communicatieplatforms",
+              "Externe kalendersystemen (Google, Outlook)",
+              "Documentopslagoplossingen",
+              "Videoconferentietools",
+              "SMS- en notificatiediensten"
+            ]
+          }
+        ]
+      },
+      technicalConsiderations: {
+        title: "Technische Overwegingen",
+        sections: [
+          {
+            title: "Beveiligingsvereisten",
+            items: [
+              "HIPAA-naleving in alle componenten",
+              "GDPR en regionale gegevensbeschermingsnaleving",
+              "Rolgebaseerde toegangscontrole voor alle CRM-functies",
+              "Auditlogboekregistratie van alle gevoelige operaties",
+              "Gegevensversleuteling in rust en tijdens overdracht",
+              "Tweefactorauthenticatie voor gevoelige operaties"
+            ]
+          },
+          {
+            title: "Prestatievereisten",
+            items: [
+              "Responstijd onder 500ms voor standaardoperaties",
+              "Ondersteuning voor gelijktijdige gebruikers passend bij platformgebruik",
+              "Schaalbaarheid om geprojecteerde groei over 5 jaar te verwerken",
+              "Elegante degradatie onder hoge belasting",
+              "Efficiënte gegevenssynchronisatie tussen platforms"
+            ]
+          },
+          {
+            title: "Lokalisatievereisten",
+            items: [
+              "Volledige ondersteuning voor Engels, Spaans en Nederlands",
+              "Valutaverwerking in euro's met regionale opmaak",
+              "Datum- en tijdopmaak passend bij de locale",
+              "Cultureel passende inhoudsaanpassing",
+              "Uitbreidbaar naar aanvullende talen"
+            ]
+          },
+          {
+            title: "Gebruikersinterface-richtlijnen",
+            items: [
+              "Behoud van bestaande GHS Command Console ontwerptaal",
+              "Consistente typografie, kleurenschema en componentontwerp",
+              "Kaartgebaseerde layout voor hoofddashboards",
+              "Responsief ontwerp dat alle apparaatformaten ondersteunt",
+              "Toegankelijkheidsnaleving (WCAG 2.1 AA)",
+              "Consistente iconografie en visuële hiërarchie",
+              "Donkere/lichte modus ondersteuning passend bij bestaand systeem"
+            ]
+          }
+        ]
+      },
+      implementation: {
+        title: "Implementatiestrategie",
+        sections: [
+          {
+            title: "Teststrategie",
+            items: [
+              "Unit-testing van alle componenten",
+              "Integratietesting van platformverbindingen",
+              "Gebruikersacceptatietesting met stakeholders",
+              "Prestatietesting onder verwachte belasting",
+              "Security penetratietesting",
+              "Toegankelijkheidsnalevingtesting",
+              "Cross-browser en apparaatcompatibiliteitstesting"
+            ]
+          },
+          {
+            title: "Training en Documentatie",
+            items: [
+              "Trainingsmateriaal voor beheerders",
+              "Eindgebruikersdocumentatie",
+              "Technische integratiegidsen",
+              "API-documentatie",
+              "Videotutorials voor belangrijke werkstromen",
+              "Regelmatige feature update communicaties"
+            ]
+          },
+          {
+            title: "Post-implementatie Ondersteuning",
+            items: [
+              "3-maands hypercare periode na de laatste fase",
+              "Geplande prestatieevaluaties",
+              "Gebruikersfeedback verzameling en analyse",
+              "Continue verbeteringsaanbevelingen",
+              "Regelmatige feature verbeteringen gebaseerd op gebruiksgegevens"
+            ]
+          },
+          {
+            title: "Succesmetrieken",
+            items: [
+              "Toename in cross-platform gebruikersreizen",
+              "Verbetering in tevredenheid en retentie van zorgverleners",
+              "Vermindering in administratieve overhead",
+              "Verbeterde conversiepercentages tussen platforms",
+              "Verbeterde klantretentiemetrieken",
+              "Inkomstengroei uit cross-platform kansen",
+              "Vermindering in responstijden voor klantproblemen",
+              "Verbeterde gegevensnauwkeurigheid en -volledigheid"
+            ]
+          }
+        ]
+      }
     }
   };
   
@@ -564,7 +1308,7 @@ export const ImplementationPlanContent: React.FC = () => {
       </Card>
       
       <Tabs defaultValue="core" className="w-full">
-        <TabsList className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 w-full">
+        <TabsList className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 w-full">
           <TabsTrigger value="core">{t.coreInfrastructure.title.split(".")[1]}</TabsTrigger>
           <TabsTrigger value="operations">{t.businessOperations.title.split(".")[1]}</TabsTrigger>
           <TabsTrigger value="advanced">{t.advancedFeatures.title.split(".")[1]}</TabsTrigger>
@@ -735,3 +1479,4 @@ export const ImplementationPlanContent: React.FC = () => {
     </div>
   );
 };
+
