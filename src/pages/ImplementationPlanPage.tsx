@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { DashboardLayout } from '@/components/layout/DashboardLayout';
 import { 
   Breadcrumb,
@@ -9,8 +9,6 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator
 } from "@/components/ui/breadcrumb";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useLanguage } from '@/hooks/useLanguage';
 import { dashboardTranslations } from '@/locales/dashboard';
 import { ImplementationPlanContent } from '@/components/implementation-plan/ImplementationPlanContent';
@@ -18,6 +16,13 @@ import { ImplementationPlanContent } from '@/components/implementation-plan/Impl
 const ImplementationPlanPage = () => {
   const { language } = useLanguage();
   const t = dashboardTranslations[language];
+
+  // Translations for page title
+  const pageTitle = {
+    en: "GHS Command CRM",
+    es: "CRM de GHS Command",
+    nl: "GHS Command CRM"
+  };
 
   return (
     <DashboardLayout>
@@ -30,21 +35,11 @@ const ImplementationPlanPage = () => {
             <BreadcrumbSeparator />
             <BreadcrumbItem>
               <BreadcrumbPage>
-                {language === "en" ? "Implementation Plan" : 
-                 language === "es" ? "Plan de Implementación" : 
-                 "Implementatieplan"}
+                {pageTitle[language] || pageTitle.en}
               </BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
-        
-        <div className="flex items-center justify-between">
-          <h1 className="text-3xl font-bold">
-            {language === "en" ? "GHS Command CRM Implementation Plan" : 
-             language === "es" ? "Plan de Implementación CRM de GHS Command" : 
-             "GHS Command CRM Implementatieplan"}
-          </h1>
-        </div>
         
         <ImplementationPlanContent />
       </div>
